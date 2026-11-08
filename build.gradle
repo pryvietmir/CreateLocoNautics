@@ -1,0 +1,116 @@
+plugins {
+    id 'java-library'
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.147'
+}
+
+version = mod_version
+group = mod_group_id
+base { archivesName = mod_id }
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = project.neo_version
+
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+        configureEach {
+            systemProperty 'forge.logging.console.level', 'info'
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+dependencies {
+    // Mod dependencies are compile-only jars in ./libs, fetched with `gradlew fetchLibs`:
+    // most of them are only published on Modrinth, and their NeoForge jars nest the real jars via JarJar.
+    // For testing in game, put the full mod jars into run/mods.
+    compileOnly fileTree(dir: 'libs', include: '*.jar')
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
+
+// Jars Loconautics 0.39 compiles against. These exact versions resolve every one of the
+// 4689 references the original bytecode makes into these mods.
+// `keep`: also copy the downloaded jar itself; `nested`: name prefixes of JarJar'd jars to extract
+// (searched recursively).
+def libSources = [
+        [url   : 'https://cdn.modrinth.com/data/LNytGWDc/versions/UjX6dr61/create-1.21.1-6.0.10.jar',
+         keep  : true,
+         nested: ['flywheel-neoforge-', 'ponder-neoforge-', 'Registrate-']],
+        [url   : 'https://cdn.modrinth.com/data/T9PomCSv/versions/fg9dTRz9/sable-neoforge-1.21.1-2.0.6.jar',
+         keep  : true,
+         nested: ['dev.ryanhcode.sable.sable-sable_rapier-', 'sable-companion-', 'veil-neoforge-']],
+        [url   : 'https://cdn.modrinth.com/data/oWaK0Q19/versions/44pLdPGg/create-aeronautics-bundled-1.21.1-1.3.2.jar',
+         keep  : false,
+         nested: ['dev.simulated_team.simulated.', 'dev.eriksonn.aeronautics.']],
+        [url   : 'https://cdn.modrinth.com/data/gu7yAYhd/versions/KNdTEfUA/cc-tweaked-1.21.1-forge-1.121.0.jar',
+         keep  : true, nested: []],
+        [url   : 'https://cdn.modrinth.com/data/GWp4jCJj/versions/bOiDu0LS/createbigcannons-5.11.7%2Bmc.1.21.1.jar',
+         keep  : true, nested: []],
+        [url   : 'https://cdn.modrinth.com/data/L3Jv0QZI/versions/czVeSmZo/railways-0.3.0-beta.2%2Bneoforge-mc1.21.1.jar',
+         keep  : true, nested: []],
+        [url   : 'https://cdn.modrinth.com/data/ZM3tt6p1/versions/UoPH8lO1/createdieselgenerators-1.21.1-1.3.15.jar',
+         keep  : true, nested: []],
+        [url   : 'https://cdn.modrinth.com/data/ApkoHNO9/versions/H13U56dc/createpropulsion-1.1.5.jar',
+         keep  : true, nested: []],
+]
+
+tasks.register('fetchLibs') {
+    group = 'setup'
+    description = 'Downloads the mod jars Loconautics compiles against into ./libs'
+    notCompatibleWithConfigurationCache('downloads files and inspects archives at execution time')
+    doLast {
+        def libsDir = file('libs')
+        def tmp = layout.buildDirectory.dir('tmp/fetchLibs').get().asFile
+        libsDir.mkdirs()
+        tmp.mkdirs()
+        libSources.each { src ->
+            def name = URLDecoder.decode(src.url.substring(src.url.lastIndexOf('/') + 1), 'UTF-8')
+            def downloaded = new File(tmp, name)
+            if (!downloaded.exists()) {
+                logger.lifecycle("Downloading ${name}")
+                ant.get(src: src.url, dest: downloaded)
+            }
+            if (src.keep) project.copy { from downloaded; into libsDir }
+            def pending = [downloaded]
+            while (!pending.isEmpty()) {
+                def jar = pending.remove(0)
+                def extractDir = new File(tmp, "${jar.name}-nested")
+                project.copy {
+                    from(project.zipTree(jar)) { include 'META-INF/jarjar/*.jar' }
+                    into extractDir
+                    eachFile { it.path = it.name }
+                    includeEmptyDirs = false
+                }
+                extractDir.listFiles()?.findAll { f -> src.nested.any { f.name.startsWith(it) } }?.each { f ->
+                    project.copy { from f; into libsDir }
+                    pending.add(f)
+                }
+            }
+        }
+        logger.lifecycle("libs: ${libsDir.list().findAll { it.endsWith('.jar') }.sort().join(', ')}")
+    }
+}

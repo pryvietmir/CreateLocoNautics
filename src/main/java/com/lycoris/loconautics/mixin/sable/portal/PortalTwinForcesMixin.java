@@ -1,0 +1,27 @@
+package com.lycoris.loconautics.mixin.sable.portal;
+
+import com.lycoris.loconautics.trainphysics.portal.PortalTwins;
+import dev.ryanhcode.sable.api.physics.handle.RigidBodyHandle;
+import dev.ryanhcode.sable.sublevel.ServerSubLevel;
+import dev.ryanhcode.sable.sublevel.system.SubLevelPhysicsSystem;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin(value = ServerSubLevel.class, remap = false)
+public abstract class PortalTwinForcesMixin {
+    @Inject(method = "prePhysicsTick", at = @At("HEAD"), cancellable = true)
+    private void loconautics$twinSkipsBlockForces(SubLevelPhysicsSystem physicsSystem, RigidBodyHandle handle, double timeStep, CallbackInfo ci) {
+        if (PortalTwins.isTwin(((ServerSubLevel)this).getUniqueId())) {
+            ci.cancel();
+        }
+    }
+
+    @Inject(method = "applyQueuedForces", at = @At("HEAD"), cancellable = true)
+    private void loconautics$twinSkipsQueuedForces(SubLevelPhysicsSystem physicsSystem, RigidBodyHandle handle, double timeStep, CallbackInfo ci) {
+        if (PortalTwins.isTwin(((ServerSubLevel)this).getUniqueId())) {
+            ci.cancel();
+        }
+    }
+}

@@ -1,0 +1,79 @@
+package com.lycoris.loconautics.common;
+
+import com.simibubi.create.content.kinetics.base.GeneratingKineticBlockEntity;
+import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+
+public interface DyedBlock {
+    DyeColor getColor();
+
+    BlockState paintedState(BlockState var1, DyeColor var2);
+
+    default void applyPaint(Level level, BlockPos pos, BlockState painted) {
+        level.setBlock(pos, painted, 3);
+    }
+
+    default void painted(ServerPlayer player, DyeColor dyed) {
+    }
+
+    default void sanitizeAfterPaint(BlockEntity fresh) {
+        if (fresh instanceof KineticBlockEntity kinetic && fresh.getLevel() != null) {
+            kinetic.removeSource();
+            if (kinetic instanceof GeneratingKineticBlockEntity generator) {
+                generator.reActivateSource = true;
+            }
+
+            kinetic.attachKinetics();
+        }
+    }
+
+    default ItemInteractionResult paint(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player) {
+        if (!(stack.getItem() instanceof DyeItem dye && dye.getDyeColor() != this.getColor())) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        } else {
+            if (level.isClientSide) {
+                return ItemInteractionResult.SUCCESS;
+            }
+
+            Provider registries = level.registryAccess();
+            BlockEntity previous = level.getBlockEntity(pos);
+            CompoundTag data = previous == null ? null : previous.saveWithoutMetadata(registries);
+            this.applyPaint(level, pos, this.paintedState(state, dye.getDyeColor()));
+            BlockEntity fresh = level.getBlockEntity(pos);
+            if (data != null && fresh != null) {
+                fresh.loadWithComponents(data, registries);
+                this.sanitizeAfterPaint(fresh);
+                if (fresh instanceof SmartBlockEntity smart) {
+                    smart.notifyUpdate();
+                } else {
+                    fresh.setChanged();
+                }
+            }
+
+            if (player instanceof ServerPlayer serverPlayer) {
+                this.painted(serverPlayer, dye.getDyeColor());
+            }
+
+            if (!player.isCreative()) {
+                stack.shrink(1);
+            }
+
+            level.playSound(null, pos, SoundEvents.DYE_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            return ItemInteractionResult.SUCCESS;
+        }
+    }
+}

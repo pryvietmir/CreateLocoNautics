@@ -1,0 +1,15 @@
+{
+    "switch_toggle": {
+        "sounds": [
+            "loconautics:switch_toggle"
+        ]
+    },
+    "small_engine_loop": {
+        "sounds": [
+            {
+                "name": "loconautics:smallengine/idle",
+                "stream": false
+            }
+        ]
+    }
+}
