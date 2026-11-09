@@ -7,7 +7,6 @@ import dev.propulsionteam.propulsionsimulated.content.heat.IHeatConsumer;
 import dev.propulsionteam.propulsionsimulated.content.heat.IHeatSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.neoforged.fml.ModList;
 
 public final class PropulsionEngineHeat {
     private static final String MOD_ID = "createpropulsion";
@@ -19,10 +18,12 @@ public final class PropulsionEngineHeat {
     }
 
     public static boolean loaded() {
-        return ModList.get().isLoaded("createpropulsion");
+        return PropulsionCompat.isLoaded();
     }
 
-    public static HeatSourceBehavior create(SmartBlockEntity engine) {
+    // Returns the base type on purpose: callers must not see Propulsion classes in signatures,
+    // otherwise the JVM loads them while verifying the caller even when Propulsion is absent.
+    public static BlockEntityBehaviour create(SmartBlockEntity engine) {
         return new HeatSourceBehavior(engine, 600.0F, 2.0F);
     }
 

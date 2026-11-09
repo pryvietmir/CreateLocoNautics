@@ -6,6 +6,7 @@ import com.lycoris.loconautics.common.dock.DockPolling;
 import com.lycoris.loconautics.common.dock.HorizontalDockPoint;
 import com.lycoris.loconautics.common.dock.IDockable;
 import com.lycoris.loconautics.common.grab.GrabbableActor;
+import com.lycoris.loconautics.compat.heat.PropulsionCompat;
 import com.lycoris.loconautics.compat.heat.PropulsionEngineHeat;
 import com.lycoris.loconautics.content.controls.panel.PanelDriveBus;
 import com.lycoris.loconautics.content.hatch.NozzleDockService;
@@ -109,7 +110,7 @@ public class SmallEngineBlockEntity extends GeneratingKineticBlockEntity impleme
 
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         super.addBehaviours(behaviours);
-        if (PropulsionEngineHeat.loaded()) {
+        if (PropulsionCompat.isLoaded()) {
             this.heat = PropulsionEngineHeat.create(this);
             behaviours.add(this.heat);
         }
