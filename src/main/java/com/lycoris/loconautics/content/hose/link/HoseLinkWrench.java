@@ -1,7 +1,7 @@
 package com.lycoris.loconautics.content.hose.link;
 
 import com.lycoris.loconautics.content.steelcable.SteelCableHolder;
-import com.lycoris.loconautics.content.steelcable.SteelCableHover;
+import com.simibubi.create.AllItems;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -15,9 +15,11 @@ public final class HoseLinkWrench {
     private HoseLinkWrench() {
     }
 
+    // Server-side handler: must not touch SteelCableHover, which is client-only (LocalPlayer)
+    // and fails to load on a dedicated server, breaking every block placement.
     @SubscribeEvent
     public static void onRightClickBlock(RightClickBlock event) {
-        if (event.getLevel() instanceof ServerLevel level && !event.getEntity().isShiftKeyDown() && SteelCableHover.isWrench(event.getItemStack())) {
+        if (event.getLevel() instanceof ServerLevel level && !event.getEntity().isShiftKeyDown() && AllItems.WRENCH.isIn(event.getItemStack())) {
             BlockEntity be = level.getBlockEntity(event.getPos());
             if (!(be instanceof HoseConnectorBlockEntity) && be instanceof SteelCableHolder holder && holder.acceptsFluidLinks()) {
                 ServerPlayer player = event.getEntity() instanceof ServerPlayer sp ? sp : null;
