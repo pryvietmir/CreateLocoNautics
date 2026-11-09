@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import net.createmod.ponder.api.level.PonderLevel;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup.Provider;
@@ -491,8 +490,9 @@ public class SmallEngineBlockEntity extends GeneratingKineticBlockEntity impleme
                 this.sound = null;
             }
         } else {
-            this.sound = new SmallEngineSound(this);
-            Minecraft.getInstance().getSoundManager().play(this.sound);
+            // Started through SmallEngineSound so this class never passes a SmallEngineSound where a
+            // client SoundInstance is expected: verifying that would load client classes on a server.
+            this.sound = SmallEngineSound.start(this);
         }
 
         this.pistonPhasePrev = this.pistonPhase;

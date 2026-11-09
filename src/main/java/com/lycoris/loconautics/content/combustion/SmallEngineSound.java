@@ -24,6 +24,12 @@ public class SmallEngineSound extends AbstractTickableSoundInstance {
     private final SmallEngineBlockEntity engine;
     private float spin;
 
+    public static SmallEngineSound start(SmallEngineBlockEntity engine) {
+        SmallEngineSound sound = new SmallEngineSound(engine);
+        Minecraft.getInstance().getSoundManager().play(sound);
+        return sound;
+    }
+
     public SmallEngineSound(SmallEngineBlockEntity engine) {
         super((SoundEvent)LoconauticsSounds.SMALL_ENGINE_LOOP.get(), SoundSource.BLOCKS, SoundInstance.createUnseededRandom());
         this.engine = engine;
