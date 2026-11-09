@@ -71,7 +71,7 @@ public abstract class ScheduleRuntimePostalMixin implements PostalState {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void loconautics$postalRecheck(Level level, CallbackInfo ci) {
-        CreateTrainMail.recheck((ScheduleRuntime)this, level);
+        CreateTrainMail.recheck((ScheduleRuntime)(Object)this, level);
     }
 
     @Inject(method = "destinationReached", at = @At("RETURN"))

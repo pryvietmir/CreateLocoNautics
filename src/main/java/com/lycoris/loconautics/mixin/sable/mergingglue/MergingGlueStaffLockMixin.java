@@ -23,7 +23,7 @@ public abstract class MergingGlueStaffLockMixin {
 
     @Inject(method = "startControlling", at = @At("HEAD"))
     private void loconautics$freeStaffLocks(MergingGlueBlockEntity partner, CallbackInfo ci) {
-        BlockEntity self = (BlockEntity)this;
+        BlockEntity self = (BlockEntity)(Object)this;
         if (self.getLevel() instanceof ServerLevel level) {
             SubLevel var10 = Sable.HELPER.getContaining(self);
             SubLevel partnerSub = Sable.HELPER.getContaining(partner);

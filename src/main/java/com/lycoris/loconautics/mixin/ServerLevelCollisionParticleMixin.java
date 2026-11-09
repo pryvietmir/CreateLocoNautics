@@ -21,7 +21,7 @@ public abstract class ServerLevelCollisionParticleMixin {
             if (block.getState().getBlock() instanceof GhostWheelBlock) {
                 cir.setReturnValue(0);
             } else if (SubLevelPhysicsSystem.currentlySteppingSystem != null) {
-                if (SableTrainCollisionParticles.withinTrain((ServerLevel)this, x, y, z)) {
+                if (SableTrainCollisionParticles.withinTrain((ServerLevel)(Object)this, x, y, z)) {
                     cir.setReturnValue(0);
                 }
             }

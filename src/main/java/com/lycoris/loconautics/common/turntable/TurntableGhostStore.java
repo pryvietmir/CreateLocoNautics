@@ -17,7 +17,7 @@ public final class TurntableGhostStore extends SavedData {
     public static TurntableGhostStore get(MinecraftServer server) {
         DimensionDataStorage storage = server.overworld().getDataStorage();
         return (TurntableGhostStore)storage.computeIfAbsent(
-            new Factory(TurntableGhostStore::new, TurntableGhostStore::load, null), "loconautics_turntable_ghosts"
+            new Factory<TurntableGhostStore>(TurntableGhostStore::new, TurntableGhostStore::load, null), "loconautics_turntable_ghosts"
         );
     }
 

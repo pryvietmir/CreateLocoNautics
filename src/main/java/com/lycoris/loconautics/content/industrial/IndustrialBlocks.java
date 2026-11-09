@@ -75,15 +75,15 @@ public final class IndustrialBlocks {
 
     @SubscribeEvent
     public static void addToCreateBlockEntities(BlockEntityTypeAddBlocksEvent event) {
-        event.modify((BlockEntityType)AllBlockEntityTypes.FLUID_PIPE.get(), new Block[]{(Block)PIPE.get()});
-        event.modify((BlockEntityType)AllBlockEntityTypes.GLASS_FLUID_PIPE.get(), new Block[]{(Block)GLASS_PIPE.get()});
-        event.modify((BlockEntityType)AllBlockEntityTypes.MECHANICAL_PUMP.get(), new Block[]{(Block)PUMP.get()});
-        event.modify((BlockEntityType)AllBlockEntityTypes.SMART_FLUID_PIPE.get(), new Block[]{(Block)SMART_PIPE.get()});
-        event.modify((BlockEntityType)AllBlockEntityTypes.FLUID_VALVE.get(), new Block[]{(Block)VALVE.get()});
+        event.modify(AllBlockEntityTypes.FLUID_PIPE.get(), new Block[]{(Block)PIPE.get()});
+        event.modify(AllBlockEntityTypes.GLASS_FLUID_PIPE.get(), new Block[]{(Block)GLASS_PIPE.get()});
+        event.modify(AllBlockEntityTypes.MECHANICAL_PUMP.get(), new Block[]{(Block)PUMP.get()});
+        event.modify(AllBlockEntityTypes.SMART_FLUID_PIPE.get(), new Block[]{(Block)SMART_PIPE.get()});
+        event.modify(AllBlockEntityTypes.FLUID_VALVE.get(), new Block[]{(Block)VALVE.get()});
     }
 
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(FluidHandler.BLOCK, (BlockEntityType)TANK_BE.get(), (be, context) -> be.getFluidHandler());
+        event.registerBlockEntity(FluidHandler.BLOCK, TANK_BE.get(), (be, context) -> be.getFluidHandler());
     }
 }

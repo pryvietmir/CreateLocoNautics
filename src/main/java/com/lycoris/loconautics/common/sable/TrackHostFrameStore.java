@@ -17,7 +17,7 @@ public final class TrackHostFrameStore extends SavedData {
     public static TrackHostFrameStore get(MinecraftServer server) {
         DimensionDataStorage storage = server.overworld().getDataStorage();
         return (TrackHostFrameStore)storage.computeIfAbsent(
-            new Factory(TrackHostFrameStore::new, TrackHostFrameStore::load, null), "loconautics_track_host_frames"
+            new Factory<TrackHostFrameStore>(TrackHostFrameStore::new, TrackHostFrameStore::load, null), "loconautics_track_host_frames"
         );
     }
 

@@ -44,7 +44,7 @@ public abstract class BlazeConductorHeadMixin {
 
     @Inject(method = "tickAnimation", at = @At("HEAD"), cancellable = true, remap = false)
     private void loconautics$faceTravel(CallbackInfo ci) {
-        BlazeBurnerBlockEntity self = (BlazeBurnerBlockEntity)this;
+        BlazeBurnerBlockEntity self = (BlazeBurnerBlockEntity)(Object)this;
         if ((this.hat || ConductorHats.wearsHat(self)) && !this.isValidBlockAbove()) {
             Vec3 travel = this.loconautics$travel(self);
             if (travel != null) {

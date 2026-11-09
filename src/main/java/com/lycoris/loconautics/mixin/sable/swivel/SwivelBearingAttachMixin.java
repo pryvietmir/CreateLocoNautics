@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class SwivelBearingAttachMixin {
     @Inject(method = "attachConstraints", at = @At("HEAD"), remap = false)
     private void loconautics$matchPivotInWorld(ServerSubLevel plateSubLevel, Vector3d attachPos, CallbackInfo ci) {
-        SwivelBearingBlockEntity self = (SwivelBearingBlockEntity)this;
+        SwivelBearingBlockEntity self = (SwivelBearingBlockEntity)(Object)this;
         SubLevel own = Sable.HELPER.getContaining(self);
         if (loconautics$bothTrainCars(own, plateSubLevel)) {
             Vec3 anchor = self.getBlockPos().relative((Direction)self.getBlockState().getValue(SwivelBearingBlock.FACING)).getCenter();
@@ -36,7 +36,7 @@ public abstract class SwivelBearingAttachMixin {
 
     @Inject(method = "attachConstraints", at = @At("TAIL"), remap = false)
     private void loconautics$carsDoNotCollide(ServerSubLevel plateSubLevel, Vector3d attachPos, CallbackInfo ci) {
-        SwivelBearingBlockEntity self = (SwivelBearingBlockEntity)this;
+        SwivelBearingBlockEntity self = (SwivelBearingBlockEntity)(Object)this;
         if (loconautics$bothTrainCars(Sable.HELPER.getContaining(self), plateSubLevel)) {
             RotaryConstraintHandle handle = ((SwivelBearingAccessor)self).loconautics$getHandle();
             if (handle != null && handle.isValid()) {

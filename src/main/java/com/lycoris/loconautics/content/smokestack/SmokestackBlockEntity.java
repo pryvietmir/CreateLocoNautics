@@ -37,7 +37,7 @@ public class SmokestackBlockEntity extends BlockEntity {
     private final SmokeEmitter smoke = new SmokeEmitter();
 
     public SmokestackBlockEntity(BlockPos pos, BlockState state) {
-        super((BlockEntityType)LoconauticsRegistries.SMOKESTACK_BE.get(), pos, state);
+        super(LoconauticsRegistries.SMOKESTACK_BE.get(), pos, state);
     }
 
     public void setPower(int p) {

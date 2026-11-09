@@ -270,7 +270,7 @@ public class TurntableBearingPeripheral implements IPeripheral {
 
     private static <E extends Enum<E>> E lookup(Class<E> clazz, Object name, String missing) throws LuaException {
         if (name instanceof String text) {
-            for (E value : (Enum[])clazz.getEnumConstants()) {
+            for (E value : clazz.getEnumConstants()) {
                 if (value.name().equalsIgnoreCase(text)) {
                     return value;
                 }
@@ -285,7 +285,7 @@ public class TurntableBearingPeripheral implements IPeripheral {
     private static <E extends Enum<E>> String names(Class<E> clazz) {
         StringBuilder builder = new StringBuilder();
 
-        for (E value : (Enum[])clazz.getEnumConstants()) {
+        for (E value : clazz.getEnumConstants()) {
             if (builder.length() > 0) {
                 builder.append(", ");
             }

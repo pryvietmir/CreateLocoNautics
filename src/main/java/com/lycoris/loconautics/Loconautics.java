@@ -139,15 +139,15 @@ public final class Loconautics {
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
             FluidHandler.BLOCK,
-            (BlockEntityType)LoconauticsRegistries.HOSE_WINCH_BE.get(),
+            LoconauticsRegistries.HOSE_WINCH_BE.get(),
             (be, side) -> side != null && side != be.fluidInputSide() ? null : be.getHoseFluidHandler()
         );
         event.registerBlockEntity(
             FluidHandler.BLOCK,
-            (BlockEntityType)LoconauticsRegistries.HOSE_CONNECTOR_BE.get(),
+            LoconauticsRegistries.HOSE_CONNECTOR_BE.get(),
             (be, side) -> side != null && side != be.plateSide() ? null : be.getLinkHandler()
         );
-        event.registerBlockEntity(FluidHandler.BLOCK, (BlockEntityType)BoilerBlocks.BARREL_PIPE_CONNECTOR_BE.get(), (be, side) -> be.getFluidHandler());
+        event.registerBlockEntity(FluidHandler.BLOCK, BoilerBlocks.BARREL_PIPE_CONNECTOR_BE.get(), (be, side) -> be.getFluidHandler());
 
         for (Block block : BuiltInRegistries.BLOCK) {
             event.registerBlock(
@@ -157,9 +157,9 @@ public final class Loconautics {
             );
         }
 
-        event.registerBlockEntity(FluidHandler.BLOCK, (BlockEntityType)SmallEngineBlocks.ENGINE_BE.get(), (be, side) -> be.fluidHandler(side));
+        event.registerBlockEntity(FluidHandler.BLOCK, SmallEngineBlocks.ENGINE_BE.get(), (be, side) -> be.fluidHandler(side));
         event.registerBlockEntity(
-            ItemHandler.BLOCK, (BlockEntityType)BoilerBlocks.FIREBOX_STOCKER_BE.get(), (be, side) -> be.isPrimary() ? be.inputHandler() : null
+            ItemHandler.BLOCK, BoilerBlocks.FIREBOX_STOCKER_BE.get(), (be, side) -> be.isPrimary() ? be.inputHandler() : null
         );
         if (ModList.get().isLoaded("hullsteel")) {
             HullsteelSocketBridge.registerCapabilities(event);
@@ -213,20 +213,20 @@ public final class Loconautics {
         HoseSprayInteractions.rebuild(() -> {});
         TrainConsist.registerProvider(new RopeCouplingProvider());
         TrainConsist.registerProvider(
-            new BlockEntityCouplingProvider(SpringBlockEntity.class, SpringBlockEntity::getPartnerSubLevelID, spring -> true).twist(SpringTwistLinks::link)
+            new BlockEntityCouplingProvider<>(SpringBlockEntity.class, SpringBlockEntity::getPartnerSubLevelID, spring -> true).twist(SpringTwistLinks::link)
         );
         TrainConsist.registerProvider(
-            new BlockEntityCouplingProvider(KnuckleBlockEntity.class, KnuckleBlockEntity::getPartnerSubLevelId, KnuckleBlockEntity::isConnected)
+            new BlockEntityCouplingProvider<>(KnuckleBlockEntity.class, KnuckleBlockEntity::getPartnerSubLevelId, KnuckleBlockEntity::isConnected)
                 .twist((own, knuckle) -> knuckle.twistLink(own))
         );
         TrainConsist.registerProvider(
-            new BlockEntityCouplingProvider(
+            new BlockEntityCouplingProvider<>(
                     DockingConnectorBlockEntity.class, connector -> connector.otherConnectorSubLevelId, DockingConnectorBlockEntity::hasOtherConnector
                 )
                 .welded(DockingConnectorBlockEntity::isLocked)
         );
         TrainConsist.registerProvider(
-            new BlockEntityCouplingProvider(
+            new BlockEntityCouplingProvider<>(
                     StickerBlockEntity.class, sticker -> ((CreateStickerExtension)sticker).loconautics$getPartnerSubLevelId(), sticker -> true
                 )
                 .welded(sticker -> true)

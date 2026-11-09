@@ -17,7 +17,7 @@ import net.minecraft.world.level.saveddata.SavedData.Factory;
 final class GhostObstacleStore extends SavedData {
     private static final int VERSION = 2;
     private static final String DATA_NAME = "loconautics_ghost_obstacles";
-    private static final Factory<GhostObstacleStore> FACTORY = new Factory(GhostObstacleStore::new, GhostObstacleStore::load, null);
+    private static final Factory<GhostObstacleStore> FACTORY = new Factory<GhostObstacleStore>(GhostObstacleStore::new, GhostObstacleStore::load, null);
     private final Long2ObjectMap<LongSet> cells = new Long2ObjectOpenHashMap();
 
     static GhostObstacleStore get(ServerLevel level) {

@@ -20,8 +20,8 @@ public class CreativeTabBannerMixin {
     @Inject(method = "render", at = @At("TAIL"))
     private void loconautics$renderBanner(GuiGraphics graphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
         if (LoconauticsRegistries.LOCONAUTICS_TAB.isBound() && selectedTab == LoconauticsRegistries.LOCONAUTICS_TAB.get()) {
-            CreativeTabBanner.render((CreativeModeInventoryScreen)this, graphics, mouseX, mouseY, selectedTab.getDisplayName());
-            CreativeSectionBanners.render((CreativeModeInventoryScreen)this, graphics);
+            CreativeTabBanner.render((CreativeModeInventoryScreen)(Object)this, graphics, mouseX, mouseY, selectedTab.getDisplayName());
+            CreativeSectionBanners.render((CreativeModeInventoryScreen)(Object)this, graphics);
         } else {
             CreativeTabBanner.setPlaying(false);
         }

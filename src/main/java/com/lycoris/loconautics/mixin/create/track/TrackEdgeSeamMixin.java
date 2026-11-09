@@ -42,7 +42,7 @@ public abstract class TrackEdgeSeamMixin {
     @Inject(method = "canTravelTo", at = @At("HEAD"), cancellable = true)
     private void loconautics$createTrainsStopAtSeam(TrackEdge other, CallbackInfoReturnable<Boolean> cir) {
         if (RailSeams.createTrainTravelling()) {
-            TrackEdge self = (TrackEdge)this;
+            TrackEdge self = (TrackEdge)(Object)this;
             if (RailSeams.isSeam(self.node1.getLocation(), self.node2.getLocation()) || RailSeams.isSeam(other.node1.getLocation(), other.node2.getLocation())) {
                 cir.setReturnValue(false);
             }
@@ -65,6 +65,6 @@ public abstract class TrackEdgeSeamMixin {
 
     @Unique
     private boolean loconautics$isSeam() {
-        return ((TrackEdge)this).isInterDimensional() && Boolean.TRUE.equals(this.loconautics$seam);
+        return ((TrackEdge)(Object)this).isInterDimensional() && Boolean.TRUE.equals(this.loconautics$seam);
     }
 }

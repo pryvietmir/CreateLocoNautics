@@ -63,7 +63,7 @@ public abstract class SchedulePostalScreenMixin extends AbstractSimiContainerScr
     @Inject(method = "updateEditorSubwidgets", at = @At("RETURN"))
     private void loconautics$postalRows(IScheduleInput field, CallbackInfo ci) {
         boolean postal = field instanceof PostalEntry;
-        ScheduleEditorArt.setTall((ScheduleMenu)this.menu, postal);
+        ScheduleEditorArt.setTall((ScheduleMenu)(Object)this.menu, postal);
         EditBox stationBox = PostRowWidgets.takeStationBox();
         if (postal && stationBox != null) {
             this.destinationSuggestions = new DestinationSuggestions(
@@ -77,7 +77,7 @@ public abstract class SchedulePostalScreenMixin extends AbstractSimiContainerScr
 
     @Inject(method = "stopEditing", at = @At("HEAD"))
     private void loconautics$flatAgain(CallbackInfo ci) {
-        ScheduleEditorArt.setTall((ScheduleMenu)this.menu, false);
+        ScheduleEditorArt.setTall((ScheduleMenu)(Object)this.menu, false);
     }
 
     @Redirect(
@@ -124,7 +124,7 @@ public abstract class SchedulePostalScreenMixin extends AbstractSimiContainerScr
     private void loconautics$addressTooltip(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
         if (this.loconautics$postal()) {
             List<Component> tooltip = PostRowWidgets.secondRowTooltip(
-                ((PostalEntry)this.editingDestination).loconautics$delivers(), this.leftPos, this.topPos, mouseX, mouseY
+                ((PostalEntry)(Object)this.editingDestination).loconautics$delivers(), this.leftPos, this.topPos, mouseX, mouseY
             );
             if (tooltip != null) {
                 this.renderActionTooltip(graphics, tooltip, mouseX, mouseY);

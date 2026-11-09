@@ -9,7 +9,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public final class ScrewLinkRopeManager extends RopeManager<ScrewLinkRope> {
-    private static final WorldAttached<ScrewLinkRopeManager> ATTACHED = new WorldAttached(l -> l instanceof ServerLevel ? new ScrewLinkRopeManager() : null);
+    private static final WorldAttached<ScrewLinkRopeManager> ATTACHED = new WorldAttached<>(l -> l instanceof ServerLevel ? new ScrewLinkRopeManager() : null);
 
     private ScrewLinkRopeManager() {
     }

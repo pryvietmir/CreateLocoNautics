@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class KineticControlsSpeedMixin {
     @Inject(method = "getSpeed", at = @At("HEAD"), cancellable = true, remap = false)
     private void loconautics$stopWhenSwitchedOff(CallbackInfoReturnable<Float> cir) {
-        if (TrainActorControls.isDisabled((BlockEntity)this)) {
+        if (TrainActorControls.isDisabled((BlockEntity)(Object)this)) {
             cir.setReturnValue(0.0F);
         }
     }

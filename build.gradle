@@ -43,6 +43,8 @@ dependencies {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.release = 21
+    // Show every error instead of javac's default first 100.
+    options.compilerArgs += ['-Xmaxerrs', '1000']
 }
 
 idea {

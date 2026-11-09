@@ -54,7 +54,7 @@ public abstract class AssemblyScreenMixin extends Screen {
         int bgHeight = AllGuiTextures.STATION_ASSEMBLING.getHeight();
         int x = (this.width - bgWidth) / 2;
         int by = (this.height - bgHeight) / 2 + bgHeight - 24;
-        StationBlockEntity be = ((AbstractStationScreenAccessor)this).loconautics$getBlockEntity();
+        StationBlockEntity be = ((AbstractStationScreenAccessor)(Object)this).loconautics$getBlockEntity();
         int rowWidth = 76;
         int rowStart = x + (bgWidth - rowWidth) / 2 + -8;
         int sableX = rowStart;
@@ -71,8 +71,8 @@ public abstract class AssemblyScreenMixin extends Screen {
     @Inject(method = "tick", at = @At("TAIL"))
     private void loconautics$switchToIdleWhenAssembled(CallbackInfo ci) {
         if (this.minecraft != null) {
-            StationBlockEntity be = ((AbstractStationScreenAccessor)this).loconautics$getBlockEntity();
-            GlobalStation station = ((AbstractStationScreenAccessor)this).loconautics$getStation();
+            StationBlockEntity be = ((AbstractStationScreenAccessor)(Object)this).loconautics$getBlockEntity();
+            GlobalStation station = ((AbstractStationScreenAccessor)(Object)this).loconautics$getStation();
             if (station != null) {
                 if (be.isAssembling()) {
                     this.loconautics$sawAssembling = true;

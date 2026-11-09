@@ -107,7 +107,7 @@ public class FluidHatchBlock extends Block implements IBE<FluidHatchBlockEntity>
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return super.getTicker(level, state, type);
+        return IBE.super.getTicker(level, state, type);
     }
 
     public Class<FluidHatchBlockEntity> getBlockEntityClass() {

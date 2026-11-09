@@ -49,7 +49,7 @@ public abstract class TrainMapSubLevelTracksMixin {
     private static Set<TrackNodeLocation> loconautics$skipSubLevelNodes(TrackGraph graph, Operation<Set<TrackNodeLocation>> original) {
         Set<TrackNodeLocation> kept = new HashSet<>();
 
-        for (TrackNodeLocation location : (Set)original.call(new Object[]{graph})) {
+        for (TrackNodeLocation location : original.call(graph)) {
             if (!RailSeams.inPlotGrid(location)) {
                 kept.add(location);
             }

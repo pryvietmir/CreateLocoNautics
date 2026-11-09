@@ -224,7 +224,7 @@ public class BufferBlock extends HorizontalDirectionalBlock implements IBE<Buffe
 
     public InteractionResult onSneakWrenched(BlockState state, UseOnContext context) {
         InteractionResult reclaimed = CopycatBlockLogic.reclaim(state, context.getLevel(), context.getClickedPos(), context.getPlayer());
-        return reclaimed != InteractionResult.PASS ? reclaimed : super.onSneakWrenched(state, context);
+        return reclaimed != InteractionResult.PASS ? reclaimed : IWrenchable.super.onSneakWrenched(state, context);
     }
 
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {

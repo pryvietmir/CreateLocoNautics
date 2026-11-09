@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class BlockBreakerTrainDropsMixin {
     @Inject(method = "lambda$onBlockBroken$0", at = @At("HEAD"), cancellable = true, remap = false)
     private void loconautics$dropIntoCarriage(Vec3 vec, ItemStack stack, CallbackInfo ci) {
-        BlockEntity self = (BlockEntity)this;
+        BlockEntity self = (BlockEntity)(Object)this;
         if (TrainActorDrops.depositInPlace(self.getLevel(), self.getBlockPos(), stack)) {
             ci.cancel();
         }

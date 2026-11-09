@@ -33,7 +33,7 @@ public abstract class BogeyShaftedStateMixin extends Block {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void loconautics$defaultNotShafted(CallbackInfo ci) {
-        this.registerDefaultState((BlockState)this.defaultBlockState().setValue(BogeyShaft.SHAFTED, false));
+        this.registerDefaultState((BlockState)(Object)this.defaultBlockState().setValue(BogeyShaft.SHAFTED, false));
     }
 
     @Inject(method = "propertiesToCopy", at = @At("RETURN"), cancellable = true)

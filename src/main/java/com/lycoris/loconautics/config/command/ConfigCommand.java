@@ -164,7 +164,7 @@ public final class ConfigCommand {
                 .sendFailure(Component.literal("[config] " + rawVal + " is out of range" + bound).withStyle(ChatFormatting.RED));
             return 0;
         } else {
-            entry.value().set(parsed);
+            ((ModConfigSpec.ConfigValue<Object>)entry.value()).set(parsed);
             specFor(group).save();
             Object now = entry.value().get();
             ((CommandSourceStack)ctx.getSource())
@@ -188,7 +188,7 @@ public final class ConfigCommand {
         }
 
         Object def = entry.spec().getDefault();
-        entry.value().set(def);
+        ((ModConfigSpec.ConfigValue<Object>)entry.value()).set(def);
         specFor(group).save();
         ((CommandSourceStack)ctx.getSource())
             .sendSuccess(
@@ -319,7 +319,7 @@ public final class ConfigCommand {
                 Object current = entry.value().get();
                 Object def = entry.spec().getDefault();
                 if (!Objects.equals(current, def)) {
-                    entry.value().set(def);
+                    ((ModConfigSpec.ConfigValue<Object>)entry.value()).set(def);
                     touchedSpecs.add(specFor(group.getKey()));
                     count++;
                 }

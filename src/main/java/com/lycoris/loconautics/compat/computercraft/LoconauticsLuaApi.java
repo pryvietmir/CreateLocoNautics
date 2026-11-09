@@ -375,7 +375,7 @@ public class LoconauticsLuaApi implements ILuaAPI, CcEvents.Target {
             return new ArrayList<>();
         }
 
-        for (TrackGraph graph : new ArrayList(Create.RAILWAYS.trackNetworks.values())) {
+        for (TrackGraph graph : new ArrayList<>(Create.RAILWAYS.trackNetworks.values())) {
             for (GlobalStation station : graph.getPoints(EdgePointType.STATION)) {
                 if (station.name != null && station.name.matches(regex) && !found.containsKey(station.id)) {
                     SableTrain parked = StationOccupancy.parkedAt(station, null);

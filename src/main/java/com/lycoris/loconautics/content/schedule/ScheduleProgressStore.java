@@ -19,7 +19,7 @@ public final class ScheduleProgressStore extends SavedData {
     public static ScheduleProgressStore get(MinecraftServer server) {
         DimensionDataStorage storage = server.overworld().getDataStorage();
         return (ScheduleProgressStore)storage.computeIfAbsent(
-            new Factory(ScheduleProgressStore::new, ScheduleProgressStore::load, null), "loconautics_schedules"
+            new Factory<ScheduleProgressStore>(ScheduleProgressStore::new, ScheduleProgressStore::load, null), "loconautics_schedules"
         );
     }
 

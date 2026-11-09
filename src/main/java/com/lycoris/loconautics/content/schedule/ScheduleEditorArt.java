@@ -1,5 +1,6 @@
 package com.lycoris.loconautics.content.schedule;
 
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import com.lycoris.loconautics.mixin.client.gui.SlotYAccessor;
 import com.simibubi.create.content.trains.schedule.ScheduleMenu;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
@@ -36,7 +37,7 @@ public final class ScheduleEditorArt {
             TALL.put(menu, tall);
             int shift = tall ? 20 : -20;
 
-            for (Slot slot : menu.slots) {
+            for (Slot slot : ((AbstractContainerMenu)menu).slots) {
                 if (slot.container instanceof Inventory) {
                     ((SlotYAccessor)slot).loconautics$setY(slot.y + shift);
                 }

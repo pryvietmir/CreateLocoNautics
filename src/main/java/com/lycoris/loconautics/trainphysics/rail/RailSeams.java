@@ -165,7 +165,7 @@ public final class RailSeams {
     }
 
     private static Pose3dc poseOf(TrackNodeLocation location, boolean server) {
-        SubLevel host = server ? serverHostOf(location) : clientHostOf(location);
+        SubLevel host = (SubLevel)(server ? serverHostOf(location) : clientHostOf(location));
         if (host != null) {
             return host.logicalPose();
         } else if (!inPlotGrid(location)) {
@@ -267,7 +267,7 @@ public final class RailSeams {
             List<RailSeams.Railhead> heads = new ArrayList<>();
 
             for (TrackGraph graph : new ArrayList<>(networks.values())) {
-                for (TrackNodeLocation location : new ArrayList(graph.getNodes())) {
+                for (TrackNodeLocation location : new ArrayList<>(graph.getNodes())) {
                     RailSeams.Railhead head = railheadOf(graph, graph.locateNode(location));
                     if (head != null) {
                         heads.add(head);
@@ -315,7 +315,7 @@ public final class RailSeams {
                 if (node != null) {
                     int before = dropped;
 
-                    for (TrackNode other : new ArrayList(graph.getConnectionsFrom(node).keySet())) {
+                    for (TrackNode other : new ArrayList<>(graph.getConnectionsFrom(node).keySet())) {
                         TrackEdge edge = graph.getConnection(Couple.create(node, other));
                         if (edge != null && edge.isInterDimensional() && isSeam(head, other.getLocation())) {
                             graph.disconnectNodes(node, other);
@@ -357,7 +357,7 @@ public final class RailSeams {
             for (TrackGraph graph : new ArrayList<>(networks.values())) {
                 int dropped = 0;
 
-                for (TrackNodeLocation location : new ArrayList(graph.getNodes())) {
+                for (TrackNodeLocation location : new ArrayList<>(graph.getNodes())) {
                     TrackNode node = graph.locateNode(location);
                     Map<TrackNode, TrackEdge> connections = node == null ? null : graph.getConnectionsFrom(node);
                     if (connections != null) {

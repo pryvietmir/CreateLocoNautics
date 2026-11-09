@@ -47,7 +47,7 @@ public abstract class TrackPlaceBogeyOverlapMixin extends UseOnContext {
                 }
 
                 if (any) {
-                    cir.setReturnValue(this.replaceClicked || this.getLevel().getBlockState(clicked).canBeReplaced((BlockPlaceContext)this));
+                    cir.setReturnValue(this.replaceClicked || this.getLevel().getBlockState(clicked).canBeReplaced((BlockPlaceContext)(Object)this));
                 }
             }
         }

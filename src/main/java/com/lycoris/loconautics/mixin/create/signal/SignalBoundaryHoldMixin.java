@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class SignalBoundaryHoldMixin {
     @Inject(method = "isForcedRed(Z)Z", at = @At("HEAD"), cancellable = true)
     private void loconautics$computerHold(boolean primary, CallbackInfoReturnable<Boolean> cir) {
-        if (SignalOverrides.held(((SignalBoundary)this).getId(), primary)) {
+        if (SignalOverrides.held(((SignalBoundary)(Object)this).getId(), primary)) {
             cir.setReturnValue(true);
         }
     }

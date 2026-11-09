@@ -13,14 +13,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PortalTwinForcesMixin {
     @Inject(method = "prePhysicsTick", at = @At("HEAD"), cancellable = true)
     private void loconautics$twinSkipsBlockForces(SubLevelPhysicsSystem physicsSystem, RigidBodyHandle handle, double timeStep, CallbackInfo ci) {
-        if (PortalTwins.isTwin(((ServerSubLevel)this).getUniqueId())) {
+        if (PortalTwins.isTwin(((ServerSubLevel)(Object)this).getUniqueId())) {
             ci.cancel();
         }
     }
 
     @Inject(method = "applyQueuedForces", at = @At("HEAD"), cancellable = true)
     private void loconautics$twinSkipsQueuedForces(SubLevelPhysicsSystem physicsSystem, RigidBodyHandle handle, double timeStep, CallbackInfo ci) {
-        if (PortalTwins.isTwin(((ServerSubLevel)this).getUniqueId())) {
+        if (PortalTwins.isTwin(((ServerSubLevel)(Object)this).getUniqueId())) {
             ci.cancel();
         }
     }

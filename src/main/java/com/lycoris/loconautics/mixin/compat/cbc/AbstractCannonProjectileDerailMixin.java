@@ -16,7 +16,7 @@ public abstract class AbstractCannonProjectileDerailMixin {
     private void loconautics$derailOnImpact(
         HitResult hitResult, ImpactResult impactResult, ProjectileContext projectileContext, CallbackInfoReturnable<Boolean> cir
     ) {
-        AbstractCannonProjectile self = (AbstractCannonProjectile)this;
+        AbstractCannonProjectile self = (AbstractCannonProjectile)(Object)this;
         CbcTrainCompat.onShellImpact(self.level(), hitResult, projectileContext);
     }
 }

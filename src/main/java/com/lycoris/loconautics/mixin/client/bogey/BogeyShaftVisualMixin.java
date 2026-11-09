@@ -36,7 +36,7 @@ public abstract class BogeyShaftVisualMixin extends AbstractBlockEntityVisual<Ab
 
     @Inject(method = "beginFrame", at = @At("HEAD"))
     private void loconautics$syncShaft(CallbackInfo ci) {
-        BlockState state = ((AbstractBogeyBlockEntity)this.blockEntity).getBlockState();
+        BlockState state = ((AbstractBogeyBlockEntity)(Object)this.blockEntity).getBlockState();
         if (!BogeyShaft.isShafted(state)) {
             this.loconautics$dropShaft();
         } else {
@@ -46,7 +46,7 @@ public abstract class BogeyShaftVisualMixin extends AbstractBlockEntityVisual<Ab
             }
 
             if (this.loconautics$shaft == null) {
-                this.loconautics$shaft = (RotatingInstance)this.instancerProvider()
+                this.loconautics$shaft = (RotatingInstance)(Object)this.instancerProvider()
                     .instancer(AllInstanceTypes.ROTATING, Models.partial(AllPartialModels.SHAFT))
                     .createInstance();
                 this.loconautics$shaftAxis = axis;
@@ -54,7 +54,7 @@ public abstract class BogeyShaftVisualMixin extends AbstractBlockEntityVisual<Ab
                 this.relight(new FlatLit[]{this.loconautics$shaft});
             }
 
-            KineticBlockEntity end = BogeyShaft.endpoint(((AbstractBogeyBlockEntity)this.blockEntity).getLevel(), this.pos, axis);
+            KineticBlockEntity end = BogeyShaft.endpoint(((AbstractBogeyBlockEntity)(Object)this.blockEntity).getLevel(), this.pos, axis);
             if (end == null) {
                 this.loconautics$shaft.setRotationAxis(axis).setRotationalSpeed(0.0F).setRotationOffset(0.0F).setChanged();
             } else {

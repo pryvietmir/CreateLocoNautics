@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ClientSubLevelContainerCableMixin {
     @Inject(method = "tick", at = @At("TAIL"))
     private void loconautics$tickCableInterpolation(CallbackInfo ci) {
-        ClientStrands.tickAll(((ClientSubLevelContainer)this).getInterpolation().getTickPointer());
+        ClientStrands.tickAll(((ClientSubLevelContainer)(Object)this).getInterpolation().getTickPointer());
     }
 }

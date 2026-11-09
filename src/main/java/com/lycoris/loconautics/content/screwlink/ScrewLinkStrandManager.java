@@ -16,7 +16,7 @@ public final class ScrewLinkStrandManager extends StrandManager<ScrewLinkStrand>
     public static ScrewLinkStrandManager get(MinecraftServer server) {
         DimensionDataStorage storage = server.overworld().getDataStorage();
         return (ScrewLinkStrandManager)storage.computeIfAbsent(
-            new Factory(ScrewLinkStrandManager::new, ScrewLinkStrandManager::load, null), "loconautics_screw_link_strands"
+            new Factory<ScrewLinkStrandManager>(ScrewLinkStrandManager::new, ScrewLinkStrandManager::load, null), "loconautics_screw_link_strands"
         );
     }
 

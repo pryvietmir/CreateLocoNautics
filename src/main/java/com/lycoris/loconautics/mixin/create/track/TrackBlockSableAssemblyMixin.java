@@ -14,6 +14,6 @@ public abstract class TrackBlockSableAssemblyMixin implements BlockSubLevelAssem
     @Override
     public void afterMove(ServerLevel originLevel, ServerLevel resultingLevel, BlockState newState, BlockPos oldPos, BlockPos newPos) {
         StationTrackRebind.capture(originLevel, oldPos, newPos);
-        resultingLevel.scheduleTick(newPos, (Block)this, 1);
+        resultingLevel.scheduleTick(newPos, (Block)(Object)this, 1);
     }
 }

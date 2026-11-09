@@ -198,7 +198,7 @@ public abstract class PanelBlock
 
     public InteractionResult onWrenched(BlockState state, UseOnContext context) {
         Level level = context.getLevel();
-        return level.isClientSide ? InteractionResult.SUCCESS : super.onWrenched(state, context);
+        return level.isClientSide ? InteractionResult.SUCCESS : IWrenchable.super.onWrenched(state, context);
     }
 
     public InteractionResult onSneakWrenched(BlockState state, UseOnContext context) {

@@ -305,7 +305,7 @@ public final class CcNetwork {
 
         List<Map<String, Object>> out = new ArrayList<>();
 
-        for (SignalEdgeGroup group : new ArrayList(Create.RAILWAYS.signalEdgeGroups.values())) {
+        for (SignalEdgeGroup group : new ArrayList<>(Create.RAILWAYS.signalEdgeGroups.values())) {
             List<String> signals = bounding.get(group.id);
             if (signals != null) {
                 Set<UUID> occupants = trainsOf(TrainSignals.occupantsOf(group.id), fleet.ownerOfCar());

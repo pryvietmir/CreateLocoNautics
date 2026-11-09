@@ -17,6 +17,6 @@ public abstract class PortableFluidInterfaceSableMixin implements SablePsiFluidH
     @Override
     public void loconautics$setFluidCapability(@Nullable IFluidHandler handler) {
         this.capability = (IFluidHandler)(handler == null ? new FluidTank(0) : handler);
-        ((BlockEntity)this).invalidateCapabilities();
+        ((BlockEntity)(Object)this).invalidateCapabilities();
     }
 }

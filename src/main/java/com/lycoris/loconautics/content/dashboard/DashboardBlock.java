@@ -394,7 +394,7 @@ public class DashboardBlock extends HorizontalDirectionalBlock implements Connec
 
     public InteractionResult onSneakWrenched(BlockState state, UseOnContext context) {
         PanelBlockEntity panel = PanelHost.panelAt(context.getLevel(), context.getClickedPos());
-        return panel != null && panel.partCount() != 0 ? this.takeTargetedPartWithWrench(state, context) : super.onSneakWrenched(state, context);
+        return panel != null && panel.partCount() != 0 ? this.takeTargetedPartWithWrench(state, context) : IWrenchable.super.onSneakWrenched(state, context);
     }
 
     public List<ItemStack> getDrops(BlockState state, net.minecraft.world.level.storage.loot.LootParams.Builder params) {

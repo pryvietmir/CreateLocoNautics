@@ -14,7 +14,7 @@ public class IndustrialPumpRangeMixin {
         at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/fluids/FluidPropagator;getPumpRange()I")
     )
     private int loconautics$industrialRange(int original) {
-        BlockEntity self = (BlockEntity)this;
+        BlockEntity self = (BlockEntity)(Object)this;
         return IndustrialBlocks.pumpRange(self.getBlockState(), original);
     }
 }

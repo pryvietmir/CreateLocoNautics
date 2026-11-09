@@ -21,7 +21,7 @@ public abstract class WorldTypeLagTooltipMixin {
 
     @ModifyVariable(method = "setTooltip", at = @At("HEAD"), argsOnly = true)
     private Tooltip loconautics$lagWarning(Tooltip tooltip) {
-        return this instanceof CycleButton<?> button
+        return (Object)this instanceof CycleButton<?> button
                 && button.getValue() instanceof WorldTypeEntry entry
                 && entry.preset() != null
                 && entry.preset().is(LOCOMOTIVE_READY)

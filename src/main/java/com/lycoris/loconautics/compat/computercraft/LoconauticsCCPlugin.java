@@ -12,16 +12,16 @@ public final class LoconauticsCCPlugin {
 
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
-            PeripheralCapability.get(), (BlockEntityType)LoconauticsRegistries.BEARING_AXLE_BE.get(), (axle, side) -> LoconauticsTrainPeripheral.of(axle)
+            PeripheralCapability.get(), LoconauticsRegistries.BEARING_AXLE_BE.get(), (axle, side) -> LoconauticsTrainPeripheral.of(axle)
         );
         event.registerBlockEntity(
             PeripheralCapability.get(),
-            (BlockEntityType)LoconauticsRegistries.TRANSMISSION_BE.get(),
+            LoconauticsRegistries.TRANSMISSION_BE.get(),
             (transmission, side) -> TransmissionPeripheral.of(transmission)
         );
         event.registerBlockEntity(
             PeripheralCapability.get(),
-            (BlockEntityType)LoconauticsRegistries.TURNTABLE_BEARING_BE.get(),
+            LoconauticsRegistries.TURNTABLE_BEARING_BE.get(),
             (bearing, side) -> TurntableBearingPeripheral.of(bearing)
         );
     }

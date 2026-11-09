@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class SawTrainDropsMixin {
     @Inject(method = "dropItemFromCutTree", at = @At("HEAD"), cancellable = true, remap = false)
     private void loconautics$dropIntoCarriage(BlockPos pos, ItemStack stack, CallbackInfo ci) {
-        BlockEntity self = (BlockEntity)this;
+        BlockEntity self = (BlockEntity)(Object)this;
         if (TrainActorDrops.depositInPlace(self.getLevel(), self.getBlockPos(), stack)) {
             ci.cancel();
         }

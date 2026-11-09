@@ -187,7 +187,12 @@ public class AnalogControllerBlock extends HorizontalDirectionalBlock implements
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return type == AnalogControllerBlocks.CONTROLLER_BE.get() ? AnalogControllerBlockEntity::tick : null;
+        if (type != AnalogControllerBlocks.CONTROLLER_BE.get()) {
+            return null;
+        }
+
+        BlockEntityTicker<AnalogControllerBlockEntity> ticker = AnalogControllerBlockEntity::tick;
+        return (BlockEntityTicker<T>)(BlockEntityTicker<?>)ticker;
     }
 
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {

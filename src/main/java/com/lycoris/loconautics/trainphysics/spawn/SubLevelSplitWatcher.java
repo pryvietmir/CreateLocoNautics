@@ -78,7 +78,7 @@ public final class SubLevelSplitWatcher {
             splitListenerRegistered = true;
             SubLevelHeatMapManager.addSplitListener((lvl, bounds, blocks) -> {
                 if (lvl instanceof ServerLevel sl && !blocks.isEmpty()) {
-                    BlockPos any = blocks.iterator().next();
+                    BlockPos any = (BlockPos)blocks.iterator().next();
                     if (Sable.HELPER.getContaining(lvl, any) instanceof ServerSubLevel orig && !orig.isRemoved()) {
                         UUID origId = orig.getUniqueId();
                         if (SableTrainRegistry.bySubLevel(origId) != null) {

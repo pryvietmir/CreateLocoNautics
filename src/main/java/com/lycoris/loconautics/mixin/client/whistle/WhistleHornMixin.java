@@ -10,6 +10,6 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 public abstract class WhistleHornMixin {
     @ModifyVariable(method = "tick", at = @At("STORE"), ordinal = 0)
     private boolean loconautics$honk(boolean powered) {
-        return powered || WhistleHonks.isHonking(((WhistleBlockEntity)this).getBlockPos());
+        return powered || WhistleHonks.isHonking(((WhistleBlockEntity)(Object)this).getBlockPos());
     }
 }

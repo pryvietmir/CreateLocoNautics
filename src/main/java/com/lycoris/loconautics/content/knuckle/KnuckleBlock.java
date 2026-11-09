@@ -258,7 +258,7 @@ public class KnuckleBlock
             KnuckleConnectionManager.disconnect(level, pos);
         }
 
-        return super.onSneakWrenched(state, context);
+        return IWrenchable.super.onSneakWrenched(state, context);
     }
 
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {

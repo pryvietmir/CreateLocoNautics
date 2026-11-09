@@ -20,7 +20,7 @@ public class CreativeTabBannerRowMixin {
 
     @Inject(method = "buildContents", at = @At("TAIL"))
     private void loconautics$reserveBannerRow(ItemDisplayParameters parameters, CallbackInfo ci) {
-        if (LoconauticsRegistries.LOCONAUTICS_TAB.isBound() && this == LoconauticsRegistries.LOCONAUTICS_TAB.get()) {
+        if (LoconauticsRegistries.LOCONAUTICS_TAB.isBound() && (Object)this == LoconauticsRegistries.LOCONAUTICS_TAB.get()) {
             this.displayItems = CreativeSections.layout(new ArrayList<>(this.displayItems));
         }
     }

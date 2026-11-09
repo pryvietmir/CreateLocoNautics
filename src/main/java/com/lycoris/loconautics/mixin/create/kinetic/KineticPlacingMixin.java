@@ -14,7 +14,7 @@ public abstract class KineticPlacingMixin {
     @Inject(method = "read", at = @At("TAIL"))
     private void loconautics$dropSavedNetwork(CompoundTag tag, Provider registries, boolean clientPacket, CallbackInfo ci) {
         if (!clientPacket && StrandTemplates.isPlacing()) {
-            ((KineticBlockEntity)this).clearKineticInformation();
+            ((KineticBlockEntity)(Object)this).clearKineticInformation();
         }
     }
 }

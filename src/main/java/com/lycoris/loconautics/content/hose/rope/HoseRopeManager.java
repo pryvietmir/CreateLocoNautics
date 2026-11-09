@@ -8,7 +8,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public final class HoseRopeManager extends RopeManager<HoseRope> {
-    private static final WorldAttached<HoseRopeManager> ATTACHED = new WorldAttached(l -> l instanceof ServerLevel ? new HoseRopeManager() : null);
+    private static final WorldAttached<HoseRopeManager> ATTACHED = new WorldAttached<>(l -> l instanceof ServerLevel ? new HoseRopeManager() : null);
 
     private HoseRopeManager() {
     }

@@ -16,7 +16,7 @@ public final class SteelCableStrandManager extends StrandManager<SteelCableStran
     public static SteelCableStrandManager get(MinecraftServer server) {
         DimensionDataStorage storage = server.overworld().getDataStorage();
         return (SteelCableStrandManager)storage.computeIfAbsent(
-            new Factory(SteelCableStrandManager::new, SteelCableStrandManager::load, null), "loconautics_steel_cable_strands"
+            new Factory<SteelCableStrandManager>(SteelCableStrandManager::new, SteelCableStrandManager::load, null), "loconautics_steel_cable_strands"
         );
     }
 

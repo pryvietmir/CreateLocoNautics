@@ -15,12 +15,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class RopeConnectorSteelCableMixin implements SteelCableHolder {
     @Inject(method = "addBehaviours", at = @At("TAIL"))
     private void loconautics$addSteelCableBehaviour(List<BlockEntityBehaviour> behaviours, CallbackInfo ci) {
-        behaviours.add(new SteelCableHolderBehaviour((RopeConnectorBlockEntity)this, this.strandCapacity()));
+        behaviours.add(new SteelCableHolderBehaviour((RopeConnectorBlockEntity)(Object)this, this.strandCapacity()));
     }
 
     @Override
     public Vec3 getAttachmentPoint() {
-        RopeConnectorBlockEntity self = (RopeConnectorBlockEntity)this;
+        RopeConnectorBlockEntity self = (RopeConnectorBlockEntity)(Object)this;
         return self.getAttachmentPoint(self.getBlockPos(), self.getBlockState());
     }
 

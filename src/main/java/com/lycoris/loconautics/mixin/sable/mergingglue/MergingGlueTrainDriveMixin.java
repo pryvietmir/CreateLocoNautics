@@ -69,7 +69,7 @@ public abstract class MergingGlueTrainDriveMixin {
     @Inject(method = "sable$physicsTick", at = @At("HEAD"), cancellable = true)
     private void loconautics$easeLighterTrain(ServerSubLevel subLevel, RigidBodyHandle handle, double timeStep, CallbackInfo ci) {
         if (this.isController && this.hasControllingValues) {
-            MergingGlueBlockEntity self = (MergingGlueBlockEntity)this;
+            MergingGlueBlockEntity self = (MergingGlueBlockEntity)(Object)this;
             MergingGlueBlockEntity partnerGlue = self.getPartnerGlue();
             if (partnerGlue != null && subLevel.getLevel() instanceof ServerLevel level) {
                 if (Sable.HELPER.getContaining(partnerGlue) instanceof ServerSubLevel partner) {
@@ -140,7 +140,7 @@ public abstract class MergingGlueTrainDriveMixin {
     private void loconautics$glidePiece(
         ServerLevel level, ServerSubLevel controller, ServerSubLevel partner, MergingGlueBlockEntity partnerGlue, ServerSubLevel train, double dt
     ) {
-        MergingGlueBlockEntity self = (MergingGlueBlockEntity)this;
+        MergingGlueBlockEntity self = (MergingGlueBlockEntity)(Object)this;
         self.removeConstraint();
         ServerSubLevelContainer container = SubLevelContainer.getContainer(level);
         PhysicsPipeline pipeline = container.physicsSystem().getPipeline();

@@ -108,7 +108,7 @@ public class TurntableInstruction {
     }
 
     private static <E extends Enum<E>> E enumOrDefault(Class<E> clazz, String name, E fallback) {
-        for (E value : (Enum[])clazz.getEnumConstants()) {
+        for (E value : clazz.getEnumConstants()) {
             if (value.name().equals(name)) {
                 return value;
             }

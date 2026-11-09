@@ -12,7 +12,7 @@ import net.minecraft.nbt.CompoundTag;
 import org.jetbrains.annotations.Nullable;
 
 public class HoseHolderBehaviour extends BlockEntityBehaviour implements SingleStrandAttachment {
-    public static final BehaviourType<HoseHolderBehaviour> TYPE = new BehaviourType();
+    public static final BehaviourType<HoseHolderBehaviour> TYPE = new BehaviourType<>();
     public final boolean isOwner;
     @Nullable
     private UUID attachedStrandId;

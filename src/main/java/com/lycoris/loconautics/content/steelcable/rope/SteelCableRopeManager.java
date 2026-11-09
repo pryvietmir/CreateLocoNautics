@@ -8,7 +8,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public final class SteelCableRopeManager extends RopeManager<SteelCableRope> {
-    private static final WorldAttached<SteelCableRopeManager> ATTACHED = new WorldAttached(l -> l instanceof ServerLevel ? new SteelCableRopeManager() : null);
+    private static final WorldAttached<SteelCableRopeManager> ATTACHED = new WorldAttached<>(l -> l instanceof ServerLevel ? new SteelCableRopeManager() : null);
 
     private SteelCableRopeManager() {
     }

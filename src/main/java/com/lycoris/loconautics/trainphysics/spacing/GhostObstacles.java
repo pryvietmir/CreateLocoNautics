@@ -70,7 +70,7 @@ public final class GhostObstacles {
         Map<UUID, TrackGraph> networks = Create.RAILWAYS == null ? null : Create.RAILWAYS.trackNetworks;
         GhostObstacleStore store = GhostObstacleStore.get(level);
         ChunkPos pos = chunk.getPos();
-        Long2ObjectMap<LongSet> found = new Long2ObjectOpenHashMap();
+        Long2ObjectMap<LongSet> found = new Long2ObjectOpenHashMap<>();
         if (networks != null) {
             for (TrackGraph graph : networks.values()) {
                 scanGraph(level, chunk, graph, found);

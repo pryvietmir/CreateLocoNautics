@@ -17,6 +17,6 @@ public abstract class PortableItemInterfaceSableMixin implements SablePsiItemHos
     @Override
     public void loconautics$setItemCapability(@Nullable IItemHandlerModifiable handler) {
         this.capability = (IItemHandlerModifiable)(handler == null ? new ItemStackHandler(0) : handler);
-        ((BlockEntity)this).invalidateCapabilities();
+        ((BlockEntity)(Object)this).invalidateCapabilities();
     }
 }

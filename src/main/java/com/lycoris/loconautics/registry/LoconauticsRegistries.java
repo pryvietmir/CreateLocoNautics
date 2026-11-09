@@ -116,31 +116,31 @@ public final class LoconauticsRegistries {
         }
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BogeyChoice>> BOGEY_CHOICE = DATA_COMPONENTS.register(
-        "bogey_choice", () -> DataComponentType.builder().persistent(BogeyChoice.CODEC).networkSynchronized(BogeyChoice.STREAM_CODEC).build()
+        "bogey_choice", () -> DataComponentType.<BogeyChoice>builder().persistent(BogeyChoice.CODEC).networkSynchronized(BogeyChoice.STREAM_CODEC).build()
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockPos>> LOCOMOTIVE_GAUGE_TARGET = DATA_COMPONENTS.register(
-        "locomotive_gauge_target", () -> DataComponentType.builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
+        "locomotive_gauge_target", () -> DataComponentType.<BlockPos>builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockPos>> TURNTABLE_SIGNAL_TARGET = DATA_COMPONENTS.register(
-        "turntable_signal_target", () -> DataComponentType.builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
+        "turntable_signal_target", () -> DataComponentType.<BlockPos>builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockPos>> VALVE_TARGET = DATA_COMPONENTS.register(
-        "valve_target", () -> DataComponentType.builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
+        "valve_target", () -> DataComponentType.<BlockPos>builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockPos>> BUTTON_TARGET = DATA_COMPONENTS.register(
-        "button_target", () -> DataComponentType.builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
+        "button_target", () -> DataComponentType.<BlockPos>builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockPos>> SWITCH_TARGET = DATA_COMPONENTS.register(
-        "switch_target", () -> DataComponentType.builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
+        "switch_target", () -> DataComponentType.<BlockPos>builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockPos>> LEVER_TARGET = DATA_COMPONENTS.register(
-        "lever_target", () -> DataComponentType.builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
+        "lever_target", () -> DataComponentType.<BlockPos>builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockPos>> STEEL_CABLE_FIRST_CONNECTION = DATA_COMPONENTS.register(
-        "steel_cable_first_connection", () -> DataComponentType.builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
+        "steel_cable_first_connection", () -> DataComponentType.<BlockPos>builder().persistent(BlockPos.CODEC).networkSynchronized(BlockPos.STREAM_CODEC).build()
     );
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<GaugeMetric>> LOCOMOTIVE_GAUGE_METRIC = DATA_COMPONENTS.register(
-        "locomotive_gauge_metric", () -> DataComponentType.builder().persistent(GaugeMetric.CODEC).networkSynchronized(GaugeMetric.STREAM_CODEC).build()
+        "locomotive_gauge_metric", () -> DataComponentType.<GaugeMetric>builder().persistent(GaugeMetric.CODEC).networkSynchronized(GaugeMetric.STREAM_CODEC).build()
     );
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AnalogControllerBlockEntity>> ANALOG_CONTROLLER_BE = AnalogControllerBlocks.CONTROLLER_BE;
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PullBrakeBlockEntity>> PULL_BRAKE_BE = PullBrakeBlocks.PULL_BRAKE_BE;

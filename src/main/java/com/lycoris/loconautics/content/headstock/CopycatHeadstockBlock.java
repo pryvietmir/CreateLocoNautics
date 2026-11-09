@@ -102,7 +102,7 @@ public class CopycatHeadstockBlock extends DirectionalBlock implements IBE<Copyc
 
     public InteractionResult onSneakWrenched(BlockState state, UseOnContext context) {
         InteractionResult reclaimed = CopycatBlockLogic.reclaim(state, context.getLevel(), context.getClickedPos(), context.getPlayer());
-        return reclaimed != InteractionResult.PASS ? reclaimed : super.onSneakWrenched(state, context);
+        return reclaimed != InteractionResult.PASS ? reclaimed : IWrenchable.super.onSneakWrenched(state, context);
     }
 
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {

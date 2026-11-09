@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public interface BlockGetterCutClipMixin {
     @Inject(method = "clipWithInteractionOverride", at = @At("HEAD"), cancellable = true)
     private void loconautics$skipCutBlocks(Vec3 from, Vec3 to, BlockPos pos, VoxelShape shape, BlockState state, CallbackInfoReturnable<BlockHitResult> cir) {
-        if (this instanceof Level level && PortalCutLookup.hidden(level, pos)) {
+        if ((Object)this instanceof Level level && PortalCutLookup.hidden(level, pos)) {
             cir.setReturnValue(null);
         }
     }

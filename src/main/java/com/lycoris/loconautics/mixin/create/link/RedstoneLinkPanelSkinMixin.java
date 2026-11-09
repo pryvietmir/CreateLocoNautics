@@ -21,7 +21,7 @@ public abstract class RedstoneLinkPanelSkinMixin extends Block {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void loconautics$defaultToVanillaSkin(Properties properties, CallbackInfo ci) {
-        this.registerDefaultState((BlockState)this.defaultBlockState().setValue(PanelLink.SKIN, false));
+        this.registerDefaultState((BlockState)(Object)this.defaultBlockState().setValue(PanelLink.SKIN, false));
     }
 
     @Inject(method = "createBlockStateDefinition", at = @At("TAIL"))

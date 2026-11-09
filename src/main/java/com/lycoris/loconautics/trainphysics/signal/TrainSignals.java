@@ -348,7 +348,7 @@ public final class TrainSignals {
                 for (int i = 0; i < route.size(); i++) {
                     TrackEdge hop = graph.getConnection(route.get(i));
 
-                    for (Entry<TrackNode, TrackEdge> option : (List)pair.getSecond()) {
+                    for (Entry<TrackNode, TrackEdge> option : (List<Entry<TrackNode, TrackEdge>>)pair.getSecond()) {
                         if (option.getValue() == hop) {
                             route.subList(0, i + 1).clear();
                             return option;
@@ -554,7 +554,7 @@ public final class TrainSignals {
         }
 
         private String maneuverHold(SignalBoundary signal, boolean side, UUID groupId, SignalEdgeGroup group, TrackNode ahead) {
-            for (BlockPos pos : ((Map)signal.blockEntities.get(side)).keySet()) {
+            for (BlockPos pos : ((Map<BlockPos, ?>)signal.blockEntities.get(side)).keySet()) {
                 if (TurntableSignals.forcedRed(this.train.level(), pos)) {
                     return "turntable plate holds the signal at " + pos.toShortString();
                 }

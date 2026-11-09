@@ -15,7 +15,7 @@ public final class HoseStrandManager extends StrandManager<HoseStrand> {
 
     public static HoseStrandManager get(MinecraftServer server) {
         DimensionDataStorage storage = server.overworld().getDataStorage();
-        return (HoseStrandManager)storage.computeIfAbsent(new Factory(HoseStrandManager::new, HoseStrandManager::load, null), "loconautics_hose_strands");
+        return (HoseStrandManager)storage.computeIfAbsent(new Factory<HoseStrandManager>(HoseStrandManager::new, HoseStrandManager::load, null), "loconautics_hose_strands");
     }
 
     @Nullable

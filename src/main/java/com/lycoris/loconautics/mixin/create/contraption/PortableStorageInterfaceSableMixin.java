@@ -40,12 +40,12 @@ public abstract class PortableStorageInterfaceSableMixin extends SmartBlockEntit
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void loconautics$driveSableLink(CallbackInfo ci) {
-        SablePsiDriver.tick((PortableStorageInterfaceBlockEntity)this);
+        SablePsiDriver.tick((PortableStorageInterfaceBlockEntity)(Object)this);
     }
 
     @Inject(method = "stopTransferring", at = @At("TAIL"))
     private void loconautics$dropSableLink(CallbackInfo ci) {
-        SablePsiDriver.unlink((PortableStorageInterfaceBlockEntity)this);
+        SablePsiDriver.unlink((PortableStorageInterfaceBlockEntity)(Object)this);
     }
 
     @Inject(method = "write", at = @At("TAIL"))
@@ -70,7 +70,7 @@ public abstract class PortableStorageInterfaceSableMixin extends SmartBlockEntit
     @Inject(method = "getExtensionDistance", at = @At("HEAD"), cancellable = true)
     private void loconautics$liveExtension(float partialTicks, CallbackInfoReturnable<Float> cir) {
         if (this.loconautics$linked && this.loconautics$partnerPos != null && this.level != null && this.level.isClientSide) {
-            Float reach = SablePsiFrames.liveReach((PortableStorageInterfaceBlockEntity)this, this.loconautics$partnerPos);
+            Float reach = SablePsiFrames.liveReach((PortableStorageInterfaceBlockEntity)(Object)this, this.loconautics$partnerPos);
             if (reach != null) {
                 double eased = Math.pow(this.connectionAnimation.getValue(partialTicks), 2.0);
                 cir.setReturnValue((float)(eased * reach.floatValue() / 2.0));

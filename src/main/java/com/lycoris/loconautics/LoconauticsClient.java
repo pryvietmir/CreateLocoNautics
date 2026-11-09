@@ -305,21 +305,21 @@ public final class LoconauticsClient {
         PonderIndex.addPlugin(new BoilerPonderPlugin());
         PonderIndex.addPlugin(new HosePonderPlugin());
         PonderIndex.addPlugin(new SmallEnginePonderPlugin());
-        SimpleBlockEntityVisualizer.builder((BlockEntityType)BoilerBlocks.FIREBOX_BE.get()).factory(FireboxVisual::new).apply();
-        SimpleBlockEntityVisualizer.builder((BlockEntityType)BoilerBlocks.LOCOMOTIVE_GAUGE_BE.get()).factory(PanelVisual::new).apply();
-        SimpleBlockEntityVisualizer.builder((BlockEntityType)DashboardBlocks.DASHBOARD_BE.get()).factory(PanelVisual::new).apply();
-        SimpleBlockEntityVisualizer.builder((BlockEntityType)SmallEngineBlocks.ENGINE_BE.get()).factory(SmallEngineVisual::new).apply();
-        SimpleBlockEntityVisualizer.builder((BlockEntityType)LoconauticsRegistries.PULL_BRAKE_BE.get()).factory(PullBrakeVisual::new).apply();
-        SimpleBlockEntityVisualizer.builder((BlockEntityType)LoconauticsRegistries.TRANSMISSION_BE.get()).factory(SplitShaftVisual::new).apply();
-        SimpleBlockEntityVisualizer.builder((BlockEntityType)LoconauticsRegistries.BEARING_AXLE_BE.get())
+        SimpleBlockEntityVisualizer.builder(BoilerBlocks.FIREBOX_BE.get()).factory(FireboxVisual::new).apply();
+        SimpleBlockEntityVisualizer.builder(BoilerBlocks.LOCOMOTIVE_GAUGE_BE.get()).factory(PanelVisual::new).apply();
+        SimpleBlockEntityVisualizer.builder(DashboardBlocks.DASHBOARD_BE.get()).factory(PanelVisual::new).apply();
+        SimpleBlockEntityVisualizer.builder(SmallEngineBlocks.ENGINE_BE.get()).factory(SmallEngineVisual::new).apply();
+        SimpleBlockEntityVisualizer.builder(LoconauticsRegistries.PULL_BRAKE_BE.get()).factory(PullBrakeVisual::new).apply();
+        SimpleBlockEntityVisualizer.builder(LoconauticsRegistries.TRANSMISSION_BE.get()).factory(SplitShaftVisual::new).apply();
+        SimpleBlockEntityVisualizer.builder(LoconauticsRegistries.BEARING_AXLE_BE.get())
             .factory(
                 (context, be, partialTick) -> new OrientedRotatingVisual(
                     context, be, partialTick, Direction.SOUTH, BearingAxleBlock.shaftFace(be.getBlockState()), Models.partial(AllPartialModels.SHAFT_HALF)
                 )
             )
             .apply();
-        SimpleBlockEntityVisualizer.builder((BlockEntityType)LoconauticsRegistries.TURNTABLE_BEARING_BE.get()).factory(TurntableBearingVisual::new).apply();
-        SimpleBlockEntityVisualizer.builder((BlockEntityType)LoconauticsRegistries.TURNTABLE_PLATE_BE.get())
+        SimpleBlockEntityVisualizer.builder(LoconauticsRegistries.TURNTABLE_BEARING_BE.get()).factory(TurntableBearingVisual::new).apply();
+        SimpleBlockEntityVisualizer.builder(LoconauticsRegistries.TURNTABLE_PLATE_BE.get())
             .factory(OrientedRotatingVisual.of(LoconauticsPartialModels.TURNTABLE_SHAFT))
             .apply();
         ItemDescription.useKey((ItemLike)LoconauticsRegistries.STEEL_CABLE.get(), "item.loconautics.steel_cable");
@@ -354,24 +354,24 @@ public final class LoconauticsClient {
     }
 
     private void onRegisterRenderers(RegisterRenderers event) {
-        event.registerBlockEntityRenderer((BlockEntityType)LoconauticsRegistries.ANALOG_CONTROLLER_BE.get(), AnalogControllerRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)SmallEngineBlocks.ENGINE_BE.get(), SmallEngineRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)LoconauticsRegistries.PULL_BRAKE_BE.get(), PullBrakeRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)LoconauticsRegistries.TURNTABLE_BEARING_BE.get(), TurntableBearingRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)LoconauticsRegistries.TURNTABLE_PLATE_BE.get(), TurntablePlateRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)LoconauticsRegistries.BEARING_AXLE_BE.get(), BearingAxleRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)BoilerBlocks.STEAM_TAKEOFF_BE.get(), SteamTakeoffRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)BoilerBlocks.BARREL_PIPE_CONNECTOR_BE.get(), BarrelConnectorRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)BoilerBlocks.LOCOMOTIVE_GAUGE_BE.get(), PanelRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)DashboardBlocks.DASHBOARD_BE.get(), DashboardRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)LoconauticsRegistries.TRANSMISSION_BE.get(), SplitShaftRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)IndustrialBlocks.TANK_BE.get(), IndustrialTankRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)LoconauticsRegistries.KNUCKLE_BE.get(), KnuckleRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)BufferBlocks.BUFFER_BE.get(), BufferRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)LoconauticsRegistries.HOSE_CONNECTOR_BE.get(), HoseConnectorRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)LoconauticsRegistries.HOSE_WINCH_BE.get(), HoseWinchRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)LoconauticsRegistries.FLUID_HATCH_BE.get(), HatchRenderer::new);
-        event.registerBlockEntityRenderer((BlockEntityType)BoilerBlocks.FIREBOX_BE.get(), FireboxRenderer::new);
+        event.registerBlockEntityRenderer(LoconauticsRegistries.ANALOG_CONTROLLER_BE.get(), AnalogControllerRenderer::new);
+        event.registerBlockEntityRenderer(SmallEngineBlocks.ENGINE_BE.get(), SmallEngineRenderer::new);
+        event.registerBlockEntityRenderer(LoconauticsRegistries.PULL_BRAKE_BE.get(), PullBrakeRenderer::new);
+        event.registerBlockEntityRenderer(LoconauticsRegistries.TURNTABLE_BEARING_BE.get(), TurntableBearingRenderer::new);
+        event.registerBlockEntityRenderer(LoconauticsRegistries.TURNTABLE_PLATE_BE.get(), TurntablePlateRenderer::new);
+        event.registerBlockEntityRenderer(LoconauticsRegistries.BEARING_AXLE_BE.get(), BearingAxleRenderer::new);
+        event.registerBlockEntityRenderer(BoilerBlocks.STEAM_TAKEOFF_BE.get(), SteamTakeoffRenderer::new);
+        event.registerBlockEntityRenderer(BoilerBlocks.BARREL_PIPE_CONNECTOR_BE.get(), BarrelConnectorRenderer::new);
+        event.registerBlockEntityRenderer(BoilerBlocks.LOCOMOTIVE_GAUGE_BE.get(), PanelRenderer::new);
+        event.registerBlockEntityRenderer(DashboardBlocks.DASHBOARD_BE.get(), DashboardRenderer::new);
+        event.registerBlockEntityRenderer(LoconauticsRegistries.TRANSMISSION_BE.get(), SplitShaftRenderer::new);
+        event.registerBlockEntityRenderer(IndustrialBlocks.TANK_BE.get(), IndustrialTankRenderer::new);
+        event.registerBlockEntityRenderer(LoconauticsRegistries.KNUCKLE_BE.get(), KnuckleRenderer::new);
+        event.registerBlockEntityRenderer(BufferBlocks.BUFFER_BE.get(), BufferRenderer::new);
+        event.registerBlockEntityRenderer(LoconauticsRegistries.HOSE_CONNECTOR_BE.get(), HoseConnectorRenderer::new);
+        event.registerBlockEntityRenderer(LoconauticsRegistries.HOSE_WINCH_BE.get(), HoseWinchRenderer::new);
+        event.registerBlockEntityRenderer(LoconauticsRegistries.FLUID_HATCH_BE.get(), HatchRenderer::new);
+        event.registerBlockEntityRenderer(BoilerBlocks.FIREBOX_BE.get(), FireboxRenderer::new);
         event.registerEntityRenderer((EntityType)HoseSprayEntities.HOSE_SPRAY.get(), HoseSprayEntityRenderer::new);
     }
 

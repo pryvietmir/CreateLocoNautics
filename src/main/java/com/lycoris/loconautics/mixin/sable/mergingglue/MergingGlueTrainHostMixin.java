@@ -28,7 +28,7 @@ public abstract class MergingGlueTrainHostMixin {
 
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     private void loconautics$pieceGoesIntoTrain(CallbackInfo ci) {
-        MergingGlueBlockEntity self = (MergingGlueBlockEntity)this;
+        MergingGlueBlockEntity self = (MergingGlueBlockEntity)(Object)this;
         if (this.isController && this.ageTicks > 12 && this.partnerPosition != null && self.getLevel() instanceof ServerLevel level) {
             MergingGlueBlockEntity partner = self.getPartnerGlue();
             if (partner != null

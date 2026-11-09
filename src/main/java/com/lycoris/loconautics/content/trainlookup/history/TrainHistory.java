@@ -22,7 +22,7 @@ public final class TrainHistory extends SavedData {
 
     public static TrainHistory get(MinecraftServer server) {
         DimensionDataStorage storage = server.overworld().getDataStorage();
-        return (TrainHistory)storage.computeIfAbsent(new Factory(TrainHistory::new, TrainHistory::load, null), "loconautics_train_history");
+        return (TrainHistory)storage.computeIfAbsent(new Factory<TrainHistory>(TrainHistory::new, TrainHistory::load, null), "loconautics_train_history");
     }
 
     public void record(HistoryEntry entry) {

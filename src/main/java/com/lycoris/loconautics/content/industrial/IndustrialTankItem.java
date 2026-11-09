@@ -75,7 +75,7 @@ public class IndustrialTankItem extends BlockItem {
                 }
             }
 
-            BlockEntity.addEntityType(tag, (BlockEntityType)IndustrialBlocks.TANK_BE.get());
+            BlockEntity.addEntityType(tag, IndustrialBlocks.TANK_BE.get());
             stack.set(DataComponents.BLOCK_ENTITY_DATA, CustomData.of(tag));
         }
 

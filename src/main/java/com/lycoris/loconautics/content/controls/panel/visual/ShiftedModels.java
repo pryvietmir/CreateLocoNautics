@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 public final class ShiftedModels {
     private static final float SHEET_PIXELS = 64.0F;
-    private static final RendererReloadCache<ShiftedModels.Key, Model> CACHE = new RendererReloadCache(ShiftedModels::build);
+    private static final RendererReloadCache<ShiftedModels.Key, Model> CACHE = new RendererReloadCache<>(ShiftedModels::build);
 
     private ShiftedModels() {
     }

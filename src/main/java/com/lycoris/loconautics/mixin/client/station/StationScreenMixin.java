@@ -85,7 +85,7 @@ public abstract class StationScreenMixin extends Screen {
 
     @Unique
     private StationBlockEntity loconautics$be() {
-        return ((AbstractStationScreenAccessor)this).loconautics$getBlockEntity();
+        return ((AbstractStationScreenAccessor)(Object)this).loconautics$getBlockEntity();
     }
 
     @Inject(method = "init", at = @At("TAIL"))
@@ -102,7 +102,7 @@ public abstract class StationScreenMixin extends Screen {
         this.loconautics$iconTypes = TrainIconType.REGISTRY.keySet().stream().toList();
         this.loconautics$iconScroll = new ScrollInput(x + 4, y + 17, 162, 14).titled(CreateLang.translateDirect("station.icon_type", new Object[0]));
         this.loconautics$iconScroll.withRange(0, this.loconautics$iconTypes.size());
-        this.loconautics$iconScroll.withStepFunction(ctx -> -(Integer)this.loconautics$iconScroll.standardStep().apply(ctx));
+        this.loconautics$iconScroll.withStepFunction(ctx -> -(Integer)(Object)this.loconautics$iconScroll.standardStep().apply(ctx));
         this.loconautics$iconScroll.calling(index -> this.loconautics$sendStyle());
         this.loconautics$iconScroll.active = false;
         this.loconautics$iconScroll.visible = false;
@@ -112,7 +112,7 @@ public abstract class StationScreenMixin extends Screen {
             if (SableTrainClientRegistry.isStationParked(be.getBlockPos())) {
                 this.loconautics$sendStyle();
             } else {
-                Train train = ((AbstractStationScreenAccessor)this).loconautics$getDisplayedTrain().get();
+                Train train = ((AbstractStationScreenAccessor)(Object)this).loconautics$getDisplayedTrain().get();
                 if (train != null) {
                     train.mapColorIndex = index;
                     this.messedWithColors = 10;

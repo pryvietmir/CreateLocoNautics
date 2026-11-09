@@ -633,7 +633,7 @@ public final class TurntableRegistry {
             List<RailSeams.Railhead> worldHeads = new ArrayList<>();
 
             for (TrackGraph graph : new ArrayList<>(networks.values())) {
-                for (TrackNodeLocation location : new ArrayList(graph.getNodes())) {
+                for (TrackNodeLocation location : new ArrayList<>(graph.getNodes())) {
                     RailSeams.Railhead head = RailSeams.railheadOf(graph, graph.locateNode(location));
                     if (head != null) {
                         UUID host = RailSeams.hostIdOf(location);

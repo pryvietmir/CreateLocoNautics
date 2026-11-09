@@ -41,7 +41,7 @@ public final class StationTrackRebind {
         MOVED.put(oldTrack.immutable(), newTrack.immutable());
         BlockState state = level.getBlockState(oldTrack);
         if (state.getBlock() instanceof TrackBlock track) {
-            HashSet var16 = new HashSet();
+            HashSet var16 = new HashSet<>();
 
             for (DiscoveredLocation end : track.getConnected(level, oldTrack, state, false, null)) {
                 for (TrackGraph graph : Create.RAILWAYS.getGraphs(level, end)) {

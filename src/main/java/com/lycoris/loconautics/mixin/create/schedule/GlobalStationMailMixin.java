@@ -18,7 +18,7 @@ public abstract class GlobalStationMailMixin {
     private void loconautics$filteredTransfer(CallbackInfo ci) {
         Train train = this.getPresentTrain();
         if (train != null) {
-            CreateTrainMail.transfer((GlobalStation)this, train);
+            CreateTrainMail.transfer((GlobalStation)(Object)this, train);
         }
 
         ci.cancel();

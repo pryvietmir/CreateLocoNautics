@@ -50,11 +50,11 @@ public final class ArticulationLinks {
 
     public static void registerProviders() {
         TrainConsist.registerProvider(
-            new BlockEntityCouplingProvider(SwivelBearingBlockEntity.class, be -> trainCar(be.getSubLevelID()), SwivelBearingBlockEntity::isAssembled)
+            new BlockEntityCouplingProvider<>(SwivelBearingBlockEntity.class, be -> trainCar(be.getSubLevelID()), SwivelBearingBlockEntity::isAssembled)
                 .twist(ArticulationLinks::twistLink)
         );
         TrainConsist.registerProvider(
-            new BlockEntityCouplingProvider(
+            new BlockEntityCouplingProvider<>(
                 SwivelBearingPlateBlockEntity.class, be -> trainCar(((SwivelPlateAccessor)be).loconautics$getParentSubLevelId()), be -> true
             )
         );

@@ -1,6 +1,7 @@
 package com.lycoris.loconautics.compat.bb;
 
 import com.lycoris.loconautics.LoconauticsConstants;
+import com.simibubi.create.content.trains.bogey.AbstractBogeyBlockEntity;
 import com.simibubi.create.content.trains.bogey.BogeyBlockEntityVisual;
 import dev.engine_room.flywheel.lib.visualization.SimpleBlockEntityVisualizer;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -21,7 +22,7 @@ public final class BbBogieVisualCompat {
         if (type == null) {
             LoconauticsConstants.LOGGER.warn("create_bb loaded but block entity {} not found; bogeys will not animate on Sable trains", BOGEY_BE_ID);
         } else {
-            SimpleBlockEntityVisualizer.builder(type).factory(BogeyBlockEntityVisual::new).skipVanillaRender(be -> true).apply();
+            SimpleBlockEntityVisualizer.builder((BlockEntityType<AbstractBogeyBlockEntity>)type).factory(BogeyBlockEntityVisual::new).skipVanillaRender(be -> true).apply();
         }
     }
 }

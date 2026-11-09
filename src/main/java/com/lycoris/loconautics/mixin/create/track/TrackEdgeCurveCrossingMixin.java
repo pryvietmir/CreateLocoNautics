@@ -18,7 +18,7 @@ public abstract class TrackEdgeCurveCrossingMixin {
     private void loconautics$samplePointsOnce(
         TrackNode node1, TrackNode node2, TrackEdge other, TrackNode other1, TrackNode other2, CallbackInfoReturnable<Collection<double[]>> cir
     ) {
-        TrackEdge self = (TrackEdge)this;
+        TrackEdge self = (TrackEdge)(Object)this;
         if (self.isTurn() && other.isTurn() && !self.isInterDimensional() && !other.isInterDimensional()) {
             Vec3 v1 = node1.getLocation().getLocation();
             Vec3 v2 = node2.getLocation().getLocation();

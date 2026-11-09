@@ -61,7 +61,7 @@ public final class CcNetworkEvents {
     private static void scanBlocks(CcNetwork.Fleet fleet) {
         Set<UUID> seen = new HashSet<>();
 
-        for (SignalEdgeGroup group : new ArrayList(Create.RAILWAYS.signalEdgeGroups.values())) {
+        for (SignalEdgeGroup group : new ArrayList<>(Create.RAILWAYS.signalEdgeGroups.values())) {
             Set<UUID> now = new HashSet<>();
 
             for (UUID car : TrainSignals.occupantsOf(group.id)) {
@@ -99,7 +99,7 @@ public final class CcNetworkEvents {
     private static void scanSignals() {
         Set<String> seen = new HashSet<>();
 
-        for (TrackGraph graph : new ArrayList(Create.RAILWAYS.trackNetworks.values())) {
+        for (TrackGraph graph : new ArrayList<>(Create.RAILWAYS.trackNetworks.values())) {
             for (SignalBoundary signal : graph.getPoints(EdgePointType.SIGNAL)) {
                 for (boolean primary : new boolean[]{true, false}) {
                     if (!((Map)signal.blockEntities.get(primary)).isEmpty()) {

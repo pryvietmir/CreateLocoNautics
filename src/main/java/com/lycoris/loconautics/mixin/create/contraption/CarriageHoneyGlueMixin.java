@@ -30,7 +30,7 @@ public abstract class CarriageHoneyGlueMixin {
             return true;
         }
 
-        if (!(this instanceof CarriageContraption)) {
+        if (!((Object)this instanceof CarriageContraption)) {
             return false;
         }
 

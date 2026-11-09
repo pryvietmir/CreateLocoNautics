@@ -80,7 +80,7 @@ public abstract class StationBlockEntitySableMixin extends SmartBlockEntity impl
     @Inject(method = "assemble", at = @At("HEAD"), cancellable = true)
     private void loconautics$blockCreateAssembly(UUID playerUUID, CallbackInfo ci) {
         if (!(Boolean)LoconauticsConfig.ENABLE_CREATE_TRAINS.get()) {
-            ((StationBlockEntityAccessor)this)
+            ((StationBlockEntityAccessor)(Object)this)
                 .loconautics$exception(new AssemblyException(Component.translatable("loconautics.station.createtrain.disabled")), -1);
             ci.cancel();
         }

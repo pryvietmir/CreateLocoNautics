@@ -18,7 +18,7 @@ public final class SableTrainStore extends SavedData {
 
     public static SableTrainStore get(MinecraftServer server) {
         DimensionDataStorage storage = server.overworld().getDataStorage();
-        return (SableTrainStore)storage.computeIfAbsent(new Factory(SableTrainStore::new, SableTrainStore::load, null), "loconautics_sable_trains");
+        return (SableTrainStore)storage.computeIfAbsent(new Factory<SableTrainStore>(SableTrainStore::new, SableTrainStore::load, null), "loconautics_sable_trains");
     }
 
     public void put(UUID id, CompoundTag record) {

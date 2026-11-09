@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class SignalTurntableHoldMixin {
     @Inject(method = "getReportedPower", at = @At("RETURN"), cancellable = true)
     private void loconautics$holdForTurntable(CallbackInfoReturnable<Boolean> cir) {
-        BlockEntity self = (BlockEntity)this;
+        BlockEntity self = (BlockEntity)(Object)this;
         if (!cir.getReturnValueZ() && TurntableSignals.forcedRed(self.getLevel(), self.getBlockPos())) {
             cir.setReturnValue(true);
         }

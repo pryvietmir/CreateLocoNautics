@@ -63,7 +63,7 @@ public final class CheckerFlatGenerator extends ChunkGenerator {
     }
 
     public ChunkGeneratorStructureState createState(HolderLookup<StructureSet> structureSets, RandomState randomState, long seed) {
-        Stream<Holder<StructureSet>> railGrid = structureSets.get(RAIL_GRID_SET).map(Stream::of).orElseGet(Stream::empty);
+        Stream<Holder<StructureSet>> railGrid = structureSets.get(RAIL_GRID_SET).<Stream<Holder<StructureSet>>>map(ref -> Stream.of((Holder<StructureSet>)ref)).orElseGet(Stream::empty);
         return ChunkGeneratorStructureState.createForFlat(randomState, seed, this.biomeSource, railGrid);
     }
 

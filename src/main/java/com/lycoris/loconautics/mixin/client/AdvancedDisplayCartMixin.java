@@ -13,6 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class AdvancedDisplayCartMixin {
     @Inject(method = "tick", at = @At("HEAD"))
     private void loconautics$tickOnCart(CallbackInfo ci) {
-        CrnCartDisplays.tick((BlockEntity)this);
+        CrnCartDisplays.tick((BlockEntity)(Object)this);
     }
 }

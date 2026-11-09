@@ -14,7 +14,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
 
 public class SteelCableHolderBehaviour extends BlockEntityBehaviour implements StrandAttachmentStore {
-    public static final BehaviourType<SteelCableHolderBehaviour> TYPE = new BehaviourType();
+    public static final BehaviourType<SteelCableHolderBehaviour> TYPE = new BehaviourType<>();
     private final List<UUID> attached = new ArrayList<>();
     private final int capacity;
     private final StrandTemplateState templateState = new StrandTemplateState(SteelCableTemplateKind.INSTANCE);

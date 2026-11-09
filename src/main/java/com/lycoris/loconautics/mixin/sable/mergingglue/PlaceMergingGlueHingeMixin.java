@@ -16,7 +16,7 @@ public abstract class PlaceMergingGlueHingeMixin {
     @Inject(method = "handle", at = @At("HEAD"), cancellable = true, remap = false)
     private void loconautics$refuseHingedGlue(ServerPacketContext ctx, CallbackInfo ci) {
         if (ctx.level() instanceof ServerLevel level) {
-            PlaceMergingGluePacket var7 = (PlaceMergingGluePacket)this;
+            PlaceMergingGluePacket var7 = (PlaceMergingGluePacket)(Object)this;
             SubLevel parent = Sable.HELPER.getContaining(level, var7.parentPos().relative(var7.parentFacing()));
             SubLevel child = Sable.HELPER.getContaining(level, var7.childPos().relative(var7.childFacing()));
             if (parent != null && child != null && ArticulationLinks.hinged(level, parent.getUniqueId(), child.getUniqueId())) {
