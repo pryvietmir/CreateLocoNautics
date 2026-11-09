@@ -19,7 +19,9 @@ public final class DiagnosticsConfig {
 
     public enum Channel {
         FORCE("force", true),
-        FORCE_LINES("forceLines", false);
+        FORCE_LINES("forceLines", false),
+        // Green/red wheel columns and yellow hinge lines drawn over every train car.
+        WHEEL_LINES("wheelLines", false);
 
         private final String key;
         private final boolean alwaysOn;

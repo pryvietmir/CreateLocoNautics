@@ -9,11 +9,13 @@ The original mod is made by **Lycoris, MDLOP, Basilforrealss, TugKanTheMan and H
 | Where | Change |
 |-------|--------|
 | `network/packets/variantpicker/BlockVariantApplyPacket` | **Exploit fix.** The server only checked that both blocks were *some* known variant, so a forged packet could turn a stack of one block into a stack of any other (e.g. postboxes → engines). Switching is now limited to the same variant family. |
-| `trainphysics/spawn/SableTrainSpawner#relocate` | **Exploit fix.** Holding the train relocator was only checked client-side, so a forged packet could pull any train to the sender. The server now requires the relocator in hand. |
+| `trainphysics/spawn/SableTrainSpawner#relocate` | **Exploit fix.** Holding the train relocator was only checked client-side, so a forged packet could pull any train to the sender. The server now requires the relocator in hand. Optional `relocation.requireOwnership` server config limits it to the owner or operators. |
 | `trainphysics/rail/RailSeams` + `LoconauticsClient` | **Memory leak.** `CLIENT_LEVELS` was never cleared, keeping unloaded client worlds alive after leaving. It is now cleared on level unload and on disconnect. |
 | ~250 logger calls | Tagged debug traces (`[maneuver]`, `[boilerfix]`, `[issue274]`, …) moved from INFO to DEBUG. Some fired every second per boiler. Output of the explicit `/dbgloco … trace` commands stays at INFO. |
 | `foundation/debug/StallWatchdog` | No longer starts a permanent background thread polling 10×/s unless portal tracing is enabled. |
 | `mixin/BlockEntityTickContextMixin` | The per-block-entity tick hook now skips everything that isn't a Create `SmartBlockEntity`. |
+| `network/RejectedPacketLog` | Rejected (likely forged) packets are logged at most once per player every 10 s, so a cheating client can't flood the server log. |
+| `compat/heat/PropulsionEngineHeat`, `SmallEngineBlockEntity` | **Crash fix.** The small combustion engine no longer crashes the game (placing it, its ponder, loading a world with it) when Create Propulsion isn't installed. |
 | `content/hatch/HullsteelSocketBridge` | The one method Vineflower couldn't decompile, rebuilt by hand from the bytecode. |
 
 Version string: `0.39+fixes.1`. The mod id is still `loconautics`, so the built jar replaces the original.

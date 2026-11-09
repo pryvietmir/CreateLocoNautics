@@ -1,5 +1,6 @@
 package com.lycoris.loconautics.network.packets.variantpicker;
 
+import com.lycoris.loconautics.network.RejectedPacketLog;
 import com.lycoris.loconautics.LoconauticsConstants;
 import com.lycoris.loconautics.content.variantpicker.BlockVariantRegistry;
 import io.netty.buffer.ByteBuf;
@@ -39,8 +40,14 @@ public record BlockVariantApplyPacket(InteractionHand hand, ResourceLocation blo
                         Block chosen = (Block)BuiltInRegistries.BLOCK.getOptional(packet.blockId()).orElse(null);
                         // Fix: only allow switching within the SAME variant family, otherwise a forged
                         // packet could turn a stack of one block into a stack of any other known variant.
-                        if (chosen != null && BlockVariantRegistry.isKnownVariant(chosen)
-                            && BlockVariantRegistry.locate(current).family() == BlockVariantRegistry.locate(chosen).family()) {
+                        if (chosen != null && BlockVariantRegistry.isKnownVariant(chosen)) {
+                            if (BlockVariantRegistry.locate(current).family() != BlockVariantRegistry.locate(chosen).family()) {
+                                RejectedPacketLog.warn(
+                                    player, "variant swap " + BuiltInRegistries.BLOCK.getKey(current) + " -> " + packet.blockId() + " (different families)"
+                                );
+                                return;
+                            }
+
                             Item chosenItem = chosen.asItem();
                             if (chosenItem != Items.AIR && chosenItem != held.getItem()) {
                                 player.setItemInHand(packet.hand(), new ItemStack(chosenItem, held.getCount()));

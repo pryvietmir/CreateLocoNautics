@@ -37,6 +37,7 @@ public final class LoconauticsConfig {
     public static BooleanValue BOGEY_PHYSICS_PIVOT;
     public static BooleanValue WRENCH_RELOCATION_ENABLED;
     public static BooleanValue WRENCH_RELOCATION_DERAILED_ONLY;
+    public static BooleanValue WRENCH_RELOCATION_REQUIRE_OWNERSHIP;
     public static IntValue RAIL_SEARCH_RADIUS;
     public static IntValue RAIL_SEARCH_VERTICAL_RANGE;
     public static DoubleValue RAIL_HOP_MAX_ANGLE;
@@ -215,6 +216,11 @@ public final class LoconauticsConfig {
         BUILDER.push("relocation");
         WRENCH_RELOCATION_ENABLED = BUILDER.define("enabled", true);
         WRENCH_RELOCATION_DERAILED_ONLY = BUILDER.define("derailedOnly", false);
+        WRENCH_RELOCATION_REQUIRE_OWNERSHIP = BUILDER.comment(
+                "Only the train's owner or an operator (permission level 2+) may relocate it.",
+                "Holding the relocator is always required."
+            )
+            .define("requireOwnership", false);
         BUILDER.pop();
         BUILDER.pop();
         BUILDER.push("track");

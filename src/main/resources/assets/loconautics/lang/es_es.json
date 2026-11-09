@@ -338,5 +338,7 @@
   "block.loconautics.black_small_combustion_engine": "Motor de Combustion Pequeno Black",
   "block.loconautics.small_combustion_engine.tooltip.summary": "Un motor de _seis cilindros_ que mueve un eje quemando _combustible líquido_ de un cubo o una tubería.",
   "block.loconautics.small_combustion_engine.tooltip.condition1": "Al recibir señal de redstone",
-  "block.loconautics.small_combustion_engine.tooltip.behaviour1": "_Va más lento_ cuanto más fuerte es la señal, y se _detiene_ a máxima fuerza."
+  "block.loconautics.small_combustion_engine.tooltip.behaviour1": "_Va más lento_ cuanto más fuerte es la señal, y se _detiene_ a máxima fuerza.",
+  "message.loconautics.relocator.need_relocator": "Necesitas un reubicador de trenes en la mano.",
+  "message.loconautics.relocator.not_owner": "Este tren pertenece a otra persona."
 }

@@ -1,5 +1,6 @@
 package com.lycoris.loconautics.trainphysics.spawn;
 
+import com.lycoris.loconautics.network.RejectedPacketLog;
 import net.minecraft.world.item.Item;
 import com.lycoris.loconautics.registry.LoconauticsRegistries;
 import com.lycoris.loconautics.LoconauticsConstants;
@@ -833,9 +834,19 @@ public final class SableTrainSpawner {
         // Fix: the "holding a relocator" check used to live only on the client, so a forged
         // SableTrainRelocatePacket could pull any train by its sub-level id. Enforce it here.
         if (!holdsRelocator(player)) {
-            LoconauticsConstants.LOGGER.warn("[sabletrain] relocate by {} rejected: no relocator in hand", player.getGameProfile().getName());
-            player.displayClientMessage(Component.literal("You need a train relocator in hand."), true);
+            RejectedPacketLog.warn(player, "relocate without a relocator in hand");
+            player.displayClientMessage(Component.translatable("message.loconautics.relocator.need_relocator"), true);
             return;
+        }
+
+        if (LoconauticsConfig.WRENCH_RELOCATION_REQUIRE_OWNERSHIP.get() && !player.hasPermissions(2)) {
+            SableTrain target = SableTrainRegistry.bySubLevel(subLevelId);
+            UUID owner = target == null ? null : target.owner();
+            if (owner != null && !owner.equals(player.getUUID())) {
+                RejectedPacketLog.warn(player, "relocate of someone else's train");
+                player.displayClientMessage(Component.translatable("message.loconautics.relocator.not_owner"), true);
+                return;
+            }
         }
 
         SableTrainSpawner.RelocationPlan plan = planRelocation(player, subLevelId, pick, lookAngle, true);

@@ -1,5 +1,6 @@
 package com.lycoris.loconautics.trainphysics.glue;
 
+import com.lycoris.loconautics.config.DiagnosticsConfig;
 import com.lycoris.loconautics.LoconauticsConstants;
 import com.lycoris.loconautics.common.sable.BodyRef;
 import com.lycoris.loconautics.foundation.LogFormat;
@@ -253,6 +254,11 @@ public final class WheelSupports {
     }
 
     public static void traceColumns(ServerSubLevel sub, WheelSupports.Prepared prepared) {
+        // Debug overlay: used to be drawn for every car, for every player nearby, with no way to turn it off.
+        if (!DiagnosticsConfig.Channel.WHEEL_LINES.enabled()) {
+            return;
+        }
+
         WheelSupports.Wheel[] wheels = prepared.wheels();
         CarriageRoll.Roll roll = CarriageRoll.of(sub.getUniqueId());
         if (roll.y.length == wheels.length) {

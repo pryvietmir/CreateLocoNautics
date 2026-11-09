@@ -885,5 +885,7 @@
   "block.loconautics.black_small_combustion_engine": "Small Black Combustion Engine",
   "block.loconautics.small_combustion_engine.tooltip.summary": "A _six cylinder_ engine that turns a shaft by burning _liquid fuel_ from a bucket or pipe.",
   "block.loconautics.small_combustion_engine.tooltip.condition1": "When Powered by Redstone",
-  "block.loconautics.small_combustion_engine.tooltip.behaviour1": "_Slows down_ as the signal gets stronger, and _stops_ at full strength."
+  "block.loconautics.small_combustion_engine.tooltip.behaviour1": "_Slows down_ as the signal gets stronger, and _stops_ at full strength.",
+  "message.loconautics.relocator.need_relocator": "You need a train relocator in hand.",
+  "message.loconautics.relocator.not_owner": "This train belongs to someone else."
 }
