@@ -88,7 +88,7 @@ public class FluidThresholdCondition extends CargoThresholdCondition {
 
     @OnlyIn(Dist.CLIENT)
     private FluidStack loadFluid() {
-        return this.compareStack.fluid(Minecraft.getInstance().level);
+        return this.compareStack.fluid((Level) (Object) Minecraft.getInstance().level);
     }
 
     @Override

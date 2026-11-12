@@ -398,7 +398,7 @@ public class BoilerScenes {
             .placeNearTarget()
             .pointAt(util.vector().blockSurface(SAFETY_VALVE, Direction.NORTH));
         scene.idle(70);
-        scene.world().setBlock(SAFETY_VALVE, ((SmartSafetyValveBlock)BoilerBlocks.SMART_SAFETY_VALVE.get()).defaultBlockState(), true);
+        scene.world().setBlock(SAFETY_VALVE, ((SmartSafetyValveBlock)BoilerBlocks.SMART_SAFETY_VALVE.get()).defaultBlockState().setValue(SmartSafetyValveBlock.RAISED, true), true);
         scene.idle(15);
         scene.overlay()
             .showText(60)

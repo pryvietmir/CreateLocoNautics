@@ -5,6 +5,7 @@ import com.lycoris.loconautics.network.PacketTargets;
 import com.lycoris.loconautics.registry.LoconauticsRegistries;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -107,7 +108,7 @@ public class PanelFrequencyMenu extends BindFrequencyMenu<PanelSlotTarget> {
                 this.clientPart = types[typeOrdinal].read(partTag);
             }
 
-            PanelBlockEntity panel = PacketTargets.blockEntity(Minecraft.getInstance().level, pos, PanelBlockEntity.class);
+            PanelBlockEntity panel = PacketTargets.blockEntity((Level) (Object) Minecraft.getInstance().level, pos, PanelBlockEntity.class);
             return panel == null ? null : new PanelSlotTarget(panel, this.clientSlot);
         } else {
             return null;
